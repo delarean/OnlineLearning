@@ -17,10 +17,10 @@ class CreateActiveCoursesTable extends Migration
             $table->increments('id');
 
             $table->integer('course_id');
-            $table->foreign('course_id')->references('id')->on('All_Courses');
+            //$table->foreign('course_id')->references('id')->on('All_Courses');
 
             $table->integer('student_id');
-            $table->foreign('student_id')->references('id')->on('Students');
+            //$table->foreign('student_id')->references('id')->on('Students');
 
 
             $table->integer('amount_remain');

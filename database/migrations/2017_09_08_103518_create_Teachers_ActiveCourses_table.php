@@ -15,10 +15,10 @@ class CreateTeachersActiveCoursesTable extends Migration
     {
         Schema::create('Teachers_ActiveCourses', function (Blueprint $table) {
             $table->integer('active_course_id');
-            $table->foreign('active_course_id')->references('id')->on('Active_Courses');
+            //$table->foreign('active_course_id')->references('id')->on('Active_Courses');
 
             $table->integer('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('Teachers');
+            //$table->foreign('teacher_id')->references('id')->on('Teachers');
             $table->timestamps();
         });
     }
