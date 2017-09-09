@@ -18,8 +18,8 @@ class ActiveCourse extends Model
         return $this->hasOne('App\Student', 'student_id', 'id');
     }
 
-    public function teacher(){
-        return $this->hasMany('App\Teacher', 'teacher_id', 'id');
+    public function teachers(){
+        return $this->belongsToMany('App\Teacher', 'Teachers_ActiveCourses', 'active_course_id', 'teacher_id');
     }
 
 }

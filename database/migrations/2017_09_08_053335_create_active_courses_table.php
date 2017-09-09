@@ -15,9 +15,14 @@ class CreateActiveCoursesTable extends Migration
     {
         Schema::create('Active_Courses', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('course_id');
             $table->foreign('course_id')->references('id')->on('All_Courses');
+
+            $table->integer('student_id');
             $table->foreign('student_id')->references('id')->on('Students');
-            $table->foreign('teacher_id')->references('id')->on('Teachers');
+
+
             $table->integer('amount_remain');
             $table->timestamps();
         });

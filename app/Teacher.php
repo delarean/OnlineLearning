@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    public function ActiveCourse()
+    public function activeCourses()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsToMany('App\ActiveCourse', 'Teachers_ActiveCourses','teacher_id', 'active_course_id');
     }
 }
