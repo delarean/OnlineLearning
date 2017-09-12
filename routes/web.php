@@ -10,7 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => '/student'],function (){
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', function () {
+        return view('profile');
+    });
+
+    Route::get('/teacher', function () {
+        return view('teacher');
+    });
+
+    Route::get('/lessons', function () {
+        return view('lessons');
+    });
+
+    Route::get('/payments', function () {
+        return view('payments');
+    });
+
+    Route::get('/buylessons', function () {
+        return view('buylessons');
+    });
+
+    Route::get('/freelessons', function () {
+        return view('freelessons');
+    });
+
+    Route::get('/writetoadmin', function () {
+        return view('writetoadmin');
+    });
+
 });
+
