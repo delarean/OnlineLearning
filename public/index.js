@@ -35,11 +35,11 @@ $(window).ready(function () {
 
 	});
 
-	/*$('.urokiChooseCell').click(function (e) {
+	$('.urokiChooseCell').click(function (e) {
 		$('.urokiChooseSelector').stop().animate({'left':$(this).position().left + 'px'}, 200);
 	});
 
-	$('.menuButton, .headerName').mousedown(function (e) {
+	/*$('.menuButton, .headerName').mousedown(function (e) {
 		e.preventDefault();
 	});*/
 

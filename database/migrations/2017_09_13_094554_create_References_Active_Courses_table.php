@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActiveCoursesTable extends Migration
+class CreateReferencesActiveCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,8 @@ class CreateActiveCoursesTable extends Migration
     public function up()
     {
         Schema::create('Active_Courses', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->integer('course_id')->unsigned();
-
-            $table->integer('student_id')->unsigned();
-
-
-            $table->integer('amount_remain');
-            $table->timestamps();
+            $table->foreign('course_id')->references('id')->on('All_Courses');
+            $table->foreign('student_id')->references('id')->on('Students');
         });
     }
 
@@ -33,6 +26,10 @@ class CreateActiveCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Active_Courses');
+        Schema::table('Teachers_ActiveCourses', function($table)
+        {
+            $table->dropForeign('active_course_id');
+            $table->dropForeign('teacher_id');
+        });
     }
 }

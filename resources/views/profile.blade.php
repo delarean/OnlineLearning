@@ -7,33 +7,33 @@
             <hr class="profileHr">
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/datarojdeniya.png);"></div>
-                <span style="color:#999999;">Дата рождения:&nbsp;</span>01.01.2000
+                <span style="color:#999999;padding-top: 5px;margin-bottom: 6px;">Дата рождения:&nbsp;<p class="inline_p">01.01.2000</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/pocta.png);"></div>
-                <span style="color:#999999;">Email:&nbsp;</span>email@mail.ru
+                <span style="color:#999999;">Email:&nbsp;<p class="inline_p">email@mail.ru</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/telefon.png);"></div>
-                <span style="color:#999999;">Телефон:&nbsp;</span>+7(111)111-11-11
+                <span style="color:#999999;margin-bottom: 5px;padding-top: 3px;">Телефон:&nbsp;<p class="inline_p">+7(111)111-11-11</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/skype.png);"></div>
-                <span style="color:#999999;">Skype:&nbsp;</span>skype
+                <span style="color:#999999;padding-top: 3px;">Skype:&nbsp;<p class="inline_p">skype</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/strana.png);"></div>
-                <span style="color:#999999;">Страна:&nbsp;</span>Россия
+                <span style="color:#999999;padding-top: 3px;">Страна:&nbsp;<p class="inline_p">Россия</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/zanyatiya.png);"></div>
-                <span style="color:#999999;">Занятия:&nbsp;</span>Пн-20:00, Вт-20:00 (ПО МСК)
+                <span style="color:#999999;padding-top: 3px;">Занятия:&nbsp;<p class="inline_p">Пн-20:00, Вт-20:00 (ПО МСК)</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/kurs.png);"></div>
-                <span style="color:#999999;">Курс:&nbsp;</span>Базовый английский
+                <span style="color:#999999;padding-top: 3px;">Курс:&nbsp;<p class="inline_p">Базовый английский</p></span>
             </div>
-            <div class="profileString">
+            <div class="profileString" style="margin-top: 8px;">
                 <div class="profileImage" style="background-image:url(img/profile/prepod.png); width:30px; margin-left:-3px; margin-right:10px;"></div>
                 <span style="color:#999999;">Преподаватель:&nbsp;</span> <span class="profileTutor">Имя</span>
             </div>

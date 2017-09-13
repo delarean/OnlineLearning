@@ -113,7 +113,8 @@
         @endsection--}}
 </main>
 <footer>
-    <div class="headerIn"><div class="headerText" style="border:none; line-height:2.7;">© Онлайн школа английского языка. Все права защищены.</div></div>
+    <div class="headerIn"><div class="headerText" style="border:none; line-height:2.7;padding-left: 0;border:none;line-height:2.7;margin-left: 0;padding-top: 10px;">
+            © Онлайн школа английского языка. Все права защищены.</div></div>
 </footer>
 </html>
 @show

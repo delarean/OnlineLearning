@@ -7,23 +7,23 @@
             <hr class="profileHr">
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(../../public/img/profile/datarojdeniya.png);"></div>
-                <span style="color:#999999;">Дата рождения:&nbsp;</span>01.01.2000
+                <span style="color:#999999;padding-top: 5px;">Дата рождения:&nbsp;<p class="inline_p">01.01.2000</p></span>
             </div>
-            <div class="profileString">
+            <div class="profileString" style="margin-top: 8px;">
                 <div class="profileImage" style="background-image:url(../../public/img/profile/pocta.png);"></div>
-                <span style="color:#999999;">Email:&nbsp;</span>email@mail.ru
+                <span style="color:#999999;padding-top: 1px;">Email:&nbsp;<p class="inline_p">email@mail.ru</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(../../public/img/profile/skype.png);"></div>
-                <span style="color:#999999;">Skype:&nbsp;</span>skype
+                <span style="color:#999999;padding-top: 3px;">Skype:&nbsp;<p class="inline_p">skype</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(../../public/img/profile/strana.png);"></div>
-                <span style="color:#999999;">Страна:&nbsp;</span>Россия
+                <span style="color:#999999;padding-top: 3px;">Страна:&nbsp;<p class="inline_p">Россия</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(../../public/img/profile/staj.png);"></div>
-                <span style="color:#999999;">Стаж:&nbsp;</span>0 лет
+                <span style="color:#999999;padding-top: 4px;">Стаж:&nbsp;<p class="inline_p">0 лет</p></span>
             </div>
         </div>
     </div>

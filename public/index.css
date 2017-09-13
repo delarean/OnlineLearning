@@ -83,7 +83,7 @@ header{
 .headerText{
     padding-left: 20px;
     margin-left: 20px;
-	font-size:18pt;
+	font-size:18px;
 	color:#a5a5a5;
 	line-height:1.8;
 	border-left:2px solid #e7e7e7;
@@ -603,4 +603,8 @@ menu{
 #dop-content{
 	height: 220px;
 	margin-right: 22%;
+}
+.inline_p{
+	display: inline-block;
+	color: black;
 }
