@@ -10,4 +10,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany('App\ActiveCourse', 'Teachers_ActiveCourses','teacher_id', 'active_course_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }

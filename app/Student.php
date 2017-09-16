@@ -10,4 +10,9 @@ class Student extends Model
     {
         return $this->belongsTo('App\ActiveCourse','student_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }
