@@ -42,3 +42,9 @@ Route::group(['prefix' => '/student'],function (){
 
 });
 
+
+$this->get('/', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('/', 'Auth\LoginController@login');
+$this->post('/', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/home', 'HomeController@index')->name('home');
