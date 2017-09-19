@@ -14,7 +14,7 @@ Route::group(['prefix' => '/student'],function (){
 
     Route::get('/', function () {
         return view('profile');
-    });
+    })->name('home');
 
     Route::get('/teacher', function () {
         return view('teacher');
@@ -45,6 +45,5 @@ Route::group(['prefix' => '/student'],function (){
 
 $this->get('/', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('/', 'Auth\LoginController@login');
-$this->post('/', 'Auth\LoginController@logout')->name('logout');
+$this->post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');

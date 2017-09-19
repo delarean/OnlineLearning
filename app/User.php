@@ -30,11 +30,16 @@ class User extends Authenticatable
 
     public function teacher()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Teacher');
     }
 
     public function student()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasOne('App\Student','user_id','id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Roles');
     }
 }

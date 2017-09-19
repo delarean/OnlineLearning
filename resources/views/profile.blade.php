@@ -1,9 +1,11 @@
+{{Auth::user()->id}}
 @extends('layouts.main')
 @section('content')
     <div class="content">
+        {{--{{'Данные  - '.json_decode($student_credentials)}}--}}
         <div class="profileAvatar"></div>
         <div class="profileText">
-            <span class="profileName">ИМЯ ФАМИЛИЯ</span>
+            <span class="profileName">{{Auth::user()->student->name.' '.Auth::user()->student->surname}} </span>
             <hr class="profileHr">
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/datarojdeniya.png);"></div>
@@ -11,19 +13,19 @@
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/pocta.png);"></div>
-                <span style="color:#999999;">Email:&nbsp;<p class="inline_p">email@mail.ru</p></span>
+                <span style="color:#999999;">Email:&nbsp;<p class="inline_p">{{Auth::user()->student['e-mail']}}</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/telefon.png);"></div>
-                <span style="color:#999999;margin-bottom: 5px;padding-top: 3px;">Телефон:&nbsp;<p class="inline_p">+7(111)111-11-11</p></span>
+                <span style="color:#999999;margin-bottom: 5px;padding-top: 3px;">Телефон:&nbsp;<p class="inline_p">{{Auth::user()->student->telephone}}</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/skype.png);"></div>
-                <span style="color:#999999;padding-top: 3px;">Skype:&nbsp;<p class="inline_p">skype</p></span>
+                <span style="color:#999999;padding-top: 3px;">Skype:&nbsp;<p class="inline_p">{{Auth::user()->student->skype}}</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/strana.png);"></div>
-                <span style="color:#999999;padding-top: 3px;">Страна:&nbsp;<p class="inline_p">Россия</p></span>
+                <span style="color:#999999;padding-top: 3px;">Страна:&nbsp;<p class="inline_p">{{Auth::user()->student->country}}</p></span>
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/zanyatiya.png);"></div>
