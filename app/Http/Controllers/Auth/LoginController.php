@@ -44,13 +44,6 @@ class LoginController extends Controller
                     break;
                 case 2:
                     $student_credentials = Student::where('user_id',$id)->first();
-                    Auth::user()->__set('name' , $student_credentials['name']);
-                    Auth::user()->__set('surname' , $student_credentials['surname']);
-                    Auth::user()->__set('pathronymic' , $student_credentials['pathronymic']);
-                    Auth::user()->__set('e-mail' , $student_credentials['e-mail']);
-                    Auth::user()->__set('telephone' , $student_credentials['telephone']);
-                    Auth::user()->__set('skype' , $student_credentials['skype']);
-                    Auth::user()->__set('country' , $student_credentials['country']);
                     break;
                 case 3:
                     break;
