@@ -1,3 +1,6 @@
+@foreach ($next_lessons as $next_lesson)
+    <p>{{ $next_lesson->date.' '.$next_lesson->time }}</p>
+@endforeach
 @extends('layouts.main')
 @section('content')
     <div class="urokiMain">

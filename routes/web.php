@@ -18,9 +18,7 @@ Route::group(['prefix' => '/student'],function (){
 
     Route::get('/teacher', 'StudentTeacherController@showTeacherInfo')->middleware('auth');
 
-    Route::get('/lessons', function () {
-        return view('lessons');
-    })->middleware('auth');
+    Route::get('/lessons', 'LessonsController@showLessonsInfo')->middleware('auth');
 
     Route::get('/payments', function () {
         return view('payments');

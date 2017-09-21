@@ -28,8 +28,8 @@
             </div>
             <div class="profileString">
                 <div class="profileImage" style="background-image:url(img/profile/zanyatiya.png);"></div>
-                <span style="color:#999999;padding-top: 3px;">Занятия:&nbsp;<p class="inline_p">{{--Пн-20:00, Вт-20:00--}}
-                        {{$first_lesson_time.' '.$first_lesson_date.', '.$second_lesson_time.' '.$second_lesson_date}} (ПО МСК)
+                <span style="color:#999999;padding-top: 3px;">Занятия:&nbsp;<p class="inline_p">
+  {{$first_lesson_time or 'Нет'}} {{$first_lesson_date or 'Уроков'}},  {{$second_lesson_time or 'Нет'}} {{$second_lesson_date or 'Уроков'}} (ПО МСК)
                     </p></span>
             </div>
             <div class="profileString">

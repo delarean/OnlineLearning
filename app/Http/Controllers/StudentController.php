@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Lesson;
+use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,63 +60,40 @@ class StudentController extends Controller
 
     }
 
-    //Выбираем из бд ближайшие 2 урока
+
+    // Выбираем из бд уроки и расставляем их по порядку
+    // @return arr
+
     protected function setNextLessons(){
 
+        //Сюда складываем модели уроков по порядку
+        $next_lessons = [];
+
         $activeCourses = Auth::user()->student->activeCourses;
+        $activeCoursesIds = [];
 
         foreach ($activeCourses as $activeCourse){
-            $lessons = $activeCourse->lessons;
-            foreach ($lessons as $lesson){
-                if(strtotime($lesson->date.' '.$lesson->time) < time()) continue;
-
-                if(!isset($current_lesson_time) || !isset($current_lesson_date)){
-                    $this->nextLessonModel = $lesson;
-                    $previous_lesson_time = $lesson->time;
-                    $previous_lesson_date = $lesson->date;
-                    $current_lesson_time = $lesson->time;
-                    $current_lesson_date = $lesson->date;
-                    continue;
-                }
-                elseif ($current_lesson_date < $lesson->date
-                ){
-                    continue;
-                }
-                elseif ($current_lesson_date == $lesson->date){
-                    if($current_lesson_time == $lesson->time || $current_lesson_time < $lesson->time) continue;
-                    elseif($current_lesson_time > $lesson->time){
-                        $this->nextLessonModel = $lesson;
-                        $previous_lesson_time = $current_lesson_time;
-                        $previous_lesson_date = $current_lesson_date;
-                        $current_lesson_time = $lesson->time;
-                        $current_lesson_date = $lesson->date;
-                        continue;
-                    }
-                }
-                elseif($current_lesson_date > $lesson->date){
-                    $this->nextLessonModel = $lesson;
-                    $previous_lesson_time = $current_lesson_time;
-                    $previous_lesson_date = $current_lesson_date;
-                    $current_lesson_time = $lesson->time;
-                    $current_lesson_date = $lesson->date;
-                    continue;
-                }
-            }
+            array_push($activeCoursesIds,$activeCourse->id);
         }
 
-        $this->second_lesson_time = $previous_lesson_time;
-        $this->second_lesson_date = $previous_lesson_date;
-        $this->first_lesson_time = $current_lesson_time;
-        $this->first_lesson_date = $current_lesson_date;
+        $lessons = Lesson::whereIn('active_course_id',$activeCoursesIds)->
+        orderBy('date')->
+        orderBy('time')->
+        get();
 
+        foreach ($lessons as $lesson){
+            if(strtotime($lesson->date.' '.$lesson->time) < time()) continue;
+            array_push($next_lessons,$lesson);
+        }
 
+        return $next_lessons;
 
     }
 
     //Возвращает имя учителя для ближайшего урока
     public function getNextTeacherName(){
 
-        return $this->nextLessonModel->teacher->name;
+        return $this->setNextLessons()[0]->teacher->name;
 
     }
 
@@ -137,14 +116,12 @@ class StudentController extends Controller
             $this->amount_of_native += $is_native ?  $amount_remain : 0;
             $this->amount_of_russian += $is_native ?  0 : $amount_remain;
         }
-
-
     }
 
     //Возвращает имя текущего курса
     public function getCurrentCourse(){
 
-        $next_lesson = $this->nextLessonModel;
+        $next_lesson = $this->setNextLessons()[0];
         return $next_lesson->activeCourse->course->name;
 
     }
@@ -153,21 +130,16 @@ class StudentController extends Controller
     // (следующий учитель , уроки и кол-во уроков(англ/русск))
     public function showStudentInfo(){
 
-        $this -> setNextLessons();
+        $next_lessons = $this->setNextLessons();
         $this->getAmountOfLessons();
 
 
+        if(isset($next_lessons)) {
 
-        if(isset($this->first_lesson_time)
-            && isset($this->first_lesson_date)
-            && isset($this->second_lesson_time)
-            && isset($this->second_lesson_date)
-            ) {
-
-            $this->first_lesson_date = $this->setDateFormat($this->first_lesson_date);
-            $this->second_lesson_date = $this->setDateFormat($this->second_lesson_date);
-            $this->first_lesson_time = $this->setTimeFormat($this->first_lesson_time);
-            $this->second_lesson_time = $this->setTimeFormat($this->second_lesson_time);
+            $this->first_lesson_date = $this->setDateFormat($next_lessons[0]->date);
+            $this->second_lesson_date = $this->setDateFormat($next_lessons[1]->date);
+            $this->first_lesson_time = $this->setTimeFormat($next_lessons[0]->time);
+            $this->second_lesson_time = $this->setTimeFormat($next_lessons[1]->time);
 
 
             return view('profile',[
