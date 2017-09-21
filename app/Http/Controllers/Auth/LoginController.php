@@ -35,22 +35,8 @@ class LoginController extends Controller
 
     public function redirectPath(){
 
-        $role_id = Auth::user()->role_id;
-        $id = Auth::user()->id;
-
-            switch ($role_id) {
-                case 1:
-                    Teacher::where('user_id',$id)->first();
-                    break;
-                case 2:
-                    $student_credentials = Student::where('user_id',$id)->first();
-                    break;
-                case 3:
-                    break;
-            }
-
-
-        return view('profile');
+        $role_name = mb_strtolower(Auth::user()->role->role_name);
+        return redirect('/'.$role_name);
 
     }
 
@@ -106,9 +92,9 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        //redirect()->intended($this->redirectPath());
+
         return $this->redirectPath();
-        //return redirect('/student/');
+
     }
 
     protected function sendLoginResponse(Request $request)

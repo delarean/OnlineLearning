@@ -14,9 +14,7 @@
 
 Route::group(['prefix' => '/student'],function (){
 
-    Route::get('/', function () {
-        return view('profile');
-    })->name('home')->middleware('auth');
+    Route::get('/', 'StudentController@showStudentInfo')->name('home')->middleware('auth');
 
     Route::get('/teacher', function () {
         return view('teacher');

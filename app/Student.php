@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    public function activeCourse()
+    public function activeCourses()
     {
-        return $this->belongsTo('App\ActiveCourse','student_id');
+        return $this->hasMany('App\ActiveCourse','student_id','id');
     }
 
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User','user_id','id');
     }
 }

@@ -11,7 +11,7 @@ class ActiveCourse extends Model
     protected $table = 'Active_Courses';
 
     public function course(){
-        return $this->hasOne('App\All_Course', 'course_id', 'id');
+        return $this->belongsTo('App\All_Course', 'course_id', 'id');
     }
 
     public function student(){
@@ -20,6 +20,10 @@ class ActiveCourse extends Model
 
     public function teachers(){
         return $this->belongsToMany('App\Teacher', 'Teachers_ActiveCourses', 'active_course_id', 'teacher_id');
+    }
+
+    public function lessons(){
+        return $this->hasMany('App\Lesson','active_course_id','id');
     }
 
 }
