@@ -608,3 +608,7 @@ menu{
 	display: inline-block;
 	color: black;
 }
+
+ul.pagination > li{
+	display: inline-block;
+}

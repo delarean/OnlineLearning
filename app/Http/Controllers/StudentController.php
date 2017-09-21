@@ -64,7 +64,7 @@ class StudentController extends Controller
     // Выбираем из бд уроки и расставляем их по порядку
     // @return arr
 
-    protected function setNextLessons(){
+    protected function getNextLessons(){
 
         //Сюда складываем модели уроков по порядку
         $next_lessons = [];
@@ -93,7 +93,7 @@ class StudentController extends Controller
     //Возвращает имя учителя для ближайшего урока
     public function getNextTeacherName(){
 
-        return $this->setNextLessons()[0]->teacher->name;
+        return $this->getNextLessons()[0]->teacher->name;
 
     }
 
@@ -121,7 +121,7 @@ class StudentController extends Controller
     //Возвращает имя текущего курса
     public function getCurrentCourse(){
 
-        $next_lesson = $this->setNextLessons()[0];
+        $next_lesson = $this->getNextLessons()[0];
         return $next_lesson->activeCourse->course->name;
 
     }
@@ -130,7 +130,7 @@ class StudentController extends Controller
     // (следующий учитель , уроки и кол-во уроков(англ/русск))
     public function showStudentInfo(){
 
-        $next_lessons = $this->setNextLessons();
+        $next_lessons = $this->getNextLessons();
         $this->getAmountOfLessons();
 
 

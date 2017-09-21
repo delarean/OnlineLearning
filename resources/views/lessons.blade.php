@@ -1,6 +1,3 @@
-@foreach ($next_lessons as $next_lesson)
-    <p>{{ $next_lesson->date.' '.$next_lesson->time }}</p>
-@endforeach
 @extends('layouts.main')
 @section('content')
     <div class="urokiMain">
@@ -22,13 +19,18 @@
                 <div class="urokiTitle">СТАТУС</div>
             </div>
             <div class="urokiContent">
-                <div class="urokiString">
-                    <div class="urokiCell">01.01.2000</div>
-                    <div class="urokiCell">20:00</div>
-                    <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                    <div class="urokiCell"><span style="color:green;">По расписанию</span></div>
-                </div>
-                <div class="urokiString">
+                @foreach ($next_lessons as $next_lesson)
+                    <div class="urokiString">
+                        <div class="urokiCell">{{$next_lesson->date}}</div>
+                        <div class="urokiCell">{{$next_lesson->time}}</div>
+                        <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../public/img/noAvatar.png);"></div><div class="urokiName">{{$next_lesson->teacher->name}}</div></div>
+                        <div class="urokiCell"><span style="color:green;">{{$next_lesson->status}}</span></div>
+                    </div>
+                @endforeach
+                        @if(method_exists($next_lessons,'links'))
+                    <p>{{ $next_lessons->links() }}</p>
+                    @endif
+                {{--<div class="urokiString">
                     <div class="urokiCell">01.01.2000</div>
                     <div class="urokiCell">20:00</div>
                     <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><div class="urokiName">Имя</div></div>
@@ -39,7 +41,7 @@
                     <div class="urokiCell">20:00</div>
                     <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><div class="urokiName">Имя</div></div>
                     <div class="urokiCell"><span style="color:green;">По расписанию</span></div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>

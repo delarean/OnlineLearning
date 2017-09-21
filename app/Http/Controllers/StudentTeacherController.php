@@ -9,7 +9,7 @@ class StudentTeacherController extends StudentController
 
     public function showTeacherInfo(){
 
-        $this->setNextLessons();
+        $this->getNextLessons();
         $next_teacher = $this->setNextLessons()[0]->teacher;
 
 
