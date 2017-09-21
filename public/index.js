@@ -1,7 +1,8 @@
 $(window).ready(function () {
 	var site = window.location.origin;
 
-    var sectors = window.location.href.split("/");
+    var sectors = window.location.href.split("?");
+    var sectors = sectors[0].split("/");
     var currentSector  = sectors[sectors.length - 1];
 
     if($('.menuButtonActive').length !== 0 ){

@@ -54,7 +54,7 @@ class LessonsController extends StudentController
 
         return view('lessons',[
             'next_lessons' => $this->paginateNextLessons(),
-            /*'next_teacher' => $this->getNextLessons(),*/
+
         ]);
 
     }
