@@ -112,7 +112,7 @@ class StudentController extends Controller
     }
 
     //Возвращает имя учителя для ближайшего урока
-    public function getNextTeacherName (){
+    public function getNextTeacherName(){
 
         return $this->nextLessonModel->teacher->name;
 
@@ -191,4 +191,5 @@ class StudentController extends Controller
         }
 
     }
+
 }
