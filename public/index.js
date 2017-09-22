@@ -27,8 +27,9 @@ $(window).ready(function () {
 	$('.menuButton').click(function (e) {
 		e.preventDefault();
         var newPath = this.id;
-		if(newPath !== 'student' && currentSector !== newPath) window.location.href = site + '/student/'+newPath;
+		if(newPath !== 'student' && currentSector !== newPath && newPath !== 'lessons') window.location.href = site + '/student/'+newPath;
 		else if(newPath === 'student' && currentSector !== newPath) window.location.href = site + '/'+newPath;
+		else if(currentSector !== newPath && newPath === 'lessons') window.location.href = site + '/student/'+newPath+'?lesson=next';
 	});
 
 	$('.urokiChooseCell').click(function (e) {

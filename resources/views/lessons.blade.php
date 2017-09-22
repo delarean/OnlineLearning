@@ -8,8 +8,8 @@
         </div>
         <div class="urokiLeft">
             Осталось уроков:
-            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/russia.png);"></div>5</div>
-            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/angliya.png);"></div>5</div>
+            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/russia.png);"></div>{{$amount_of_russian or 0}}</div>
+            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/angliya.png);"></div>{{$amount_of_native or 0}}</div>
         </div>
         <div class="urokiTable">
             <div class="urokiHead">

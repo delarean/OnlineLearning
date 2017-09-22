@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
+    protected $fillable = [
+        'id','payment_id'
+    ];
+
     public function activeCourses()
     {
         return $this->hasMany('App\ActiveCourse','student_id','id');
