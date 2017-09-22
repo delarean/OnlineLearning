@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class LessonsController extends StudentController
 {
 
-    public function paginateNextLessons(){
+    public function paginateNextLessons($lesson_type){
 
         $activeCourses = Auth::user()->student->activeCourses;
         $activeCoursesIds = [];
@@ -25,8 +25,14 @@ class LessonsController extends StudentController
             ->get();
 
         foreach ($all_lessons as $lesson){
-            if(strtotime($lesson->date.' '.$lesson->time) < time())
-                array_push($previous_lessons_ids,$lesson->id);
+            if($lesson_type === 'next'){
+                if(strtotime($lesson->date.' '.$lesson->time) < time())
+                    array_push($previous_lessons_ids,$lesson->id);
+            }
+            else if($lesson_type === 'previous'){
+                if(strtotime($lesson->date.' '.$lesson->time) > time())
+                    array_push($previous_lessons_ids,$lesson->id);
+            }
             $lessons_number++;
         }
 
@@ -49,12 +55,13 @@ class LessonsController extends StudentController
 
     }
 
-    public function showLessonsInfo(){
+    public function showLessonsInfo(Request $request){
 
+        $lessons_type = $request->input('lesson');
 
         return view('lessons',[
-            'next_lessons' => $this->paginateNextLessons(),
-
+            'next_lessons' => $this->paginateNextLessons($lessons_type),
+            'lesson_type' =>$lessons_type,
         ]);
 
     }

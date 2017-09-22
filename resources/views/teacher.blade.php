@@ -1,3 +1,4 @@
+{{date("D M j G:i:s T Y")}}
 @extends('layouts.main')
 @section('content')
     <div class="content" id="dop-content">

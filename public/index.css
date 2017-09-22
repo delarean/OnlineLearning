@@ -262,7 +262,7 @@ menu{
 	justify-content:space-around;
 	align-items:center;
 	margin-bottom:10px;
-	width:40%;
+	width:45%;
 	height:60px;
 	line-height:3;
 	background-color:#e6f0eb;
@@ -282,7 +282,7 @@ menu{
 .urokiChooseSelector{
 	position:absolute;
 	left:9px;
-	width:175px;
+	width:45%;
 	height:50px;
 	background-color:white;
 	border-radius:5px;
