@@ -48,7 +48,7 @@ body{
 }
 
 footer{
-    margin-top: 60px;
+    margin-top: 9.1%;
 	width:100%;
 	height:65px;
 	background-color:white;
@@ -403,7 +403,7 @@ menu{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	width:30%;
+	width:31%;
 	height:250px;
 	background-color:white;
 	border-radius:5px;

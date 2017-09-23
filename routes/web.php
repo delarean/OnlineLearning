@@ -20,9 +20,7 @@ Route::group(['prefix' => '/student'],function (){
 
     Route::get('/lessons', 'LessonsController@showLessonsInfo')->middleware('auth');
 
-    Route::get('/payments', function () {
-        return view('payments');
-    })->middleware('auth');
+    Route::get('/payments','PaymentController@showStudentPayments')->middleware('auth');
 
     Route::get('/buylessons', function () {
         return view('buylessons');
