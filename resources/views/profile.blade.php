@@ -11,7 +11,7 @@
                 <span style="color:#999999;padding-top: 5px;margin-bottom: 6px;">Дата рождения:&nbsp;<p class="inline_p">{{Auth::user()->student['birthday']}}</p></span>
             </div>
             <div class="profileString">
-                <div class="profileImage" style="background-image:url(img/profile/pocta.png);"></div>
+                <div class="profileImage" style="background-image:url(../../public/img/profile/pocta.png);"></div>
                 <span style="color:#999999;">Email:&nbsp;<p class="inline_p">{{Auth::user()->student['e-mail']}}</p></span>
             </div>
             <div class="profileString">
@@ -60,5 +60,5 @@
             <button>ПОПОЛНИТЬ</button>
         </div>
     </div>
-    <button style="margin:0px;">РЕДАКТИРОВАТЬ</button>
+    <button style="margin:0px;"><a style="text-decoration: none;color: white" href="{{route('changePassword')}}">РЕДАКТИРОВАТЬ</a></button>
 @endsection

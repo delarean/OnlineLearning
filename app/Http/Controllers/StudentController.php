@@ -93,7 +93,9 @@ class StudentController extends Controller
     //Возвращает имя учителя для ближайшего урока
     public function getNextTeacherName(){
 
+        if(isset($this->getNextLessons()[0]))
         return $this->getNextLessons()[0]->teacher->name;
+        else return 'Нет учителя';
 
     }
 
@@ -121,8 +123,9 @@ class StudentController extends Controller
     //Возвращает имя текущего курса
     public function getCurrentCourse(){
 
-        $next_lesson = $this->getNextLessons()[0];
-        return $next_lesson->activeCourse->course->name;
+        if(isset($this->getNextLessons()[0]))
+        return $this->getNextLessons()[0]->activeCourse->course->name;
+        else return 'Нет урока';
 
     }
 
@@ -135,11 +138,23 @@ class StudentController extends Controller
 
 
         if(isset($next_lessons)) {
+            if(isset($next_lessons[0]->date)) {
+                $this->first_lesson_date = $this->setDateFormat($next_lessons[0]->date);
+                $this->first_lesson_time = $this->setTimeFormat($next_lessons[0]->time);
+            }
+            else{
+                $this->first_lesson_date = 'Нет';
+                $this->first_lesson_time = 'Уроков';
+            }
+            if(isset($next_lessons[1]->date)){
+                $this->second_lesson_date = $this->setDateFormat($next_lessons[1]->date);
+                $this->second_lesson_time = $this->setTimeFormat($next_lessons[1]->time);
+            }
+            else {
+                $this->second_lesson_date = 'Нет';
+                $this->second_lesson_time = 'Уроков';
+            }
 
-            $this->first_lesson_date = $this->setDateFormat($next_lessons[0]->date);
-            $this->second_lesson_date = $this->setDateFormat($next_lessons[1]->date);
-            $this->first_lesson_time = $this->setTimeFormat($next_lessons[0]->time);
-            $this->second_lesson_time = $this->setTimeFormat($next_lessons[1]->time);
 
 
             return view('profile',[

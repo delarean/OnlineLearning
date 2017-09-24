@@ -459,10 +459,6 @@ menu{
 	box-shadow:none;
 }
 
-.oplaturokiButton:active{
-	background-color:#5198d1;
-}
-
 .oplaturokiImage{
 	margin-right:10px;
 	margin-left:10px;
@@ -611,4 +607,55 @@ menu{
 
 ul.pagination > li{
 	display: inline-block;
+}
+
+.headerSettings{
+	display:none;
+	position:absolute;
+	padding:15px;
+	top:100px;
+	width:185px;
+	border:1px solid #97c1e3;
+	background-color:white;
+	border-radius:5px;
+	box-sizing:border-box;
+	opacity:0;
+	z-index:1;
+}
+#logout_but a {
+	text-decoration:none;
+	color: #999999;
+}
+#logout_but{
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	width: 80%;
+	font-size: 12pt;
+	color: #999999;
+	cursor: pointer;
+	z-index: 1;
+}
+.headerSettingsArrow{
+	position: absolute;
+	left: 17px;
+	top: -7px;
+	width: 12px;
+	height: 7px;
+	background-image: url(img/settingsarrow.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.chgpassBlock{
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+}
+input {
+	padding: 15px 30px;
+	font-size: 12pt;
+	border-radius: 50px;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\All_Course;
 use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,46 @@ class PaymentController extends Controller
         ]);
 
 
+    }
+
+    public function sendStudentPayment(Request $request){
+
+
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $course_id = $request->input('id');
+
+        $course = [];
+
+        $course_model = All_Course::where('id',$course_id)->first();
+
+
+        $course_amount =$course_model->amount;
+
+        //return 'Всё норм';
+
+        $lessons_str = $course_amount === 2 ? 'урока c ' : 'уроков c ';
+        $teacher_type = $course_model->is_native ? 'носителем языка' : 'русскоязычным преподавателем';
+        $description = $course_amount.' '.$lessons_str.' '.$teacher_type;
+
+
+        $course['LMI_PAYMENT_AMOUNT'] = $course_model->cost;
+        $course['LMI_CURRENCY'] = 'RUB';
+        $course['LMI_MERCHANT_ID'] = env('LMI_MERCHANT_ID', false);
+        $course['LMI_PAYMENT_DESC'] = $description;
+        //$course['LMI_SIM_MODE'] = 1;
+
+        return json_encode($course);
+
+    }
+
+    public function successPayment(){
+        return view('payments');
+    }
+
+    public function failurePayment(){
+        return view('buylessons');
     }
 }

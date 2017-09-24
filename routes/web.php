@@ -22,6 +22,7 @@ Route::group(['prefix' => '/student'],function (){
 
     Route::get('/payments','PaymentController@showStudentPayments')->middleware('auth');
 
+
     Route::get('/buylessons', function () {
         return view('buylessons');
     })->middleware('auth');
@@ -34,6 +35,14 @@ Route::group(['prefix' => '/student'],function (){
         return view('writetoadmin');
     })->middleware('auth');
 
+
+    Route::get('/changepassword', function () {
+        return view('changePassword');
+    })->middleware('auth')->name('changePassword');
+
+    Route::post('/changepassword','Auth\LoginController@changePassword')->middleware('auth')->name('toChangePassword');
+
+
 });
 
 Route::get('/',function (){
@@ -45,7 +54,7 @@ Route::get('/',function (){
 
 $this->get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('/login', 'Auth\LoginController@login');
-$this->post('/logout', 'Auth\LoginController@logout')->name('logout');
+$this->post('student/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 

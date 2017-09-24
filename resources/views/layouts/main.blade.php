@@ -19,8 +19,22 @@
         <div class="headerText">Онлайн школа английского языка</div>
         <div class="headerProfile">
             <div class="headerAvatar"></div>
-            <div class="headerName">Имя Фамилия</div>
+            <div class="headerName">{{Auth::user()->student->name.' '.Auth::user()->student->surname}}</div>
             <div class="headerDown"></div>
+            <div class="headerSettings" >
+                <div class="menuButton settingsButton" style="margin-bottom:15px;"><div class="menuImage" style="background:url(../../../public/img/menu/settings.png) 0 0 no-repeat, url(../../../public/img/menu/settings.png) 20px 0 no-repeat; background-size:contain; margin-right:5px;"></div>
+                    Настройки</div>
+                <div id="oplatit_but" class="menuButton settingsButton" style="margin-bottom:15px;"><div class="menuImage" style="background:url(../../../public/img/menu/buylessons.png) 0 0 no-repeat, url(../../../public/img/menu/buylessons.png) 20px 0 no-repeat; background-size:contain; margin-right:5px;"></div>
+                    Оплатить</div>
+                <div id="logout_but" class="settingsButton" style="margin-bottom:0px;"><div class="menuImage" style="background:url(../../../public/img/menu/quit.png) 0 0 no-repeat, url(../../../public/img/menu/quit.png) 20px 0 no-repeat; background-size:contain; margin-right:5px;"></div>
+                    <a href="" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        Выход</a></div>
+                <div class="headerSettingsArrow"></div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    {{ csrf_field() }}
+                </form>
+            </div>
         </div>
     </div>
 </header>
