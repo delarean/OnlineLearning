@@ -6,6 +6,7 @@ use App\Lesson;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -176,6 +177,32 @@ class StudentController extends Controller
                 'first_lesson_date' => 'Уроков',
             ]);
         }
+
+    }
+
+    public function changePassword(Request $request){
+
+        $request->validate([
+            'current_password' => 'required|max:20',
+            'new_password' => 'required|max:20',
+        ]);
+
+
+        $user_model  = Auth::user();
+
+        if (Hash::check($request->input('current_password'), $user_model->getAuthPassword()))  {
+
+            $user_model->fill([
+                'password' => Hash::make($request->input('new_password'))
+            ])->save();
+
+            return back()->with('message','Смена пароля прошла успешно !');
+
+        }else{
+            return back()->with('message','Неправильно введён текущий пароль !');
+        }
+
+
 
     }
 

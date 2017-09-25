@@ -15,10 +15,10 @@
                     <div class="urokiCell">{{$payment['date']}}</div>
                     <div class="urokiCell">
                         @if($payment['is_native'])
-                  <div class="platejiAvatar" style="background-image:url(../../public/img/profile/russia.png);">
+                  <div class="platejiAvatar" style="background-image:url(../../../public/img/profile/russia.png);">
                         </div><div style="margin-left:10px;">({{$payment['amount']}})</div></div>
                     @else
-                        <div class="platejiAvatar" style="background-image:url(../../public/img/profile/angliya.png);">
+                        <div class="platejiAvatar" style="background-image:url(../../../public/img/profile/angliya.png);">
                         </div><div style="margin-left:10px;">({{$payment['amount']}})</div></div>
                     @endif
 

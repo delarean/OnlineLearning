@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use \Illuminate\Http\Request;
 
 
 Route::group(['prefix' => '/student'],function (){
@@ -36,14 +37,19 @@ Route::group(['prefix' => '/student'],function (){
     })->middleware('auth');
 
 
-    Route::get('/changepassword', function () {
+    Route::get('/changepassword', function (Request $request) {
+        $message = $request->session()->get('message',false);
+        if($message) return view('changePassword')->with('message',$message);
         return view('changePassword');
     })->middleware('auth')->name('changePassword');
 
-    Route::post('/changepassword','Auth\LoginController@changePassword')->middleware('auth')->name('toChangePassword');
+    /*Route::post('/changepassword','Auth\LoginController@changePassword')->name('toChangePassword');*/
 
+
+    Route::post('/changepassword','StudentController@changePassword')->name('toChangePassword');
 
 });
+
 
 Route::get('/',function (){
 

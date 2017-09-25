@@ -22,3 +22,4 @@ Route::post('/student/sendPayment','PaymentController@sendStudentPayment');
 Route::post('/student/success','PaymentController@successPayment');
 
 Route::post('/student/failure','PaymentController@failurePayment');
+

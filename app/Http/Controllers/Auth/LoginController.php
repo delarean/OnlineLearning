@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Teacher;
 use App\Student;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {

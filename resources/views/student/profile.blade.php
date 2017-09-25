@@ -11,7 +11,7 @@
                 <span style="color:#999999;padding-top: 5px;margin-bottom: 6px;">Дата рождения:&nbsp;<p class="inline_p">{{Auth::user()->student['birthday']}}</p></span>
             </div>
             <div class="profileString">
-                <div class="profileImage" style="background-image:url(../../public/img/profile/pocta.png);"></div>
+                <div class="profileImage" style="background-image:url(../../../public/img/profile/pocta.png);"></div>
                 <span style="color:#999999;">Email:&nbsp;<p class="inline_p">{{Auth::user()->student['e-mail']}}</p></span>
             </div>
             <div class="profileString">
@@ -33,7 +33,7 @@
                     </p></span>
             </div>
             <div class="profileString">
-                <div class="profileImage" style="background-image:url(../../public/img/profile/kurs.png);"></div>
+                <div class="profileImage" style="background-image:url(../../../public/img/profile/kurs.png);"></div>
                 <span style="color:#999999;padding-top: 3px;">Курс:&nbsp;<p class="inline_p">
                         {{$course_name or 'Нет курса'}}
                     </p></span>

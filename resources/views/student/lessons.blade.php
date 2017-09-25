@@ -8,8 +8,8 @@
         </div>
         <div class="urokiLeft">
             Осталось уроков:
-            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/russia.png);"></div>{{$amount_of_russian or 0}}</div>
-            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../public/img/profile/angliya.png);"></div>{{$amount_of_native or 0}}</div>
+            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../../public/img/profile/russia.png);"></div>{{$amount_of_russian or 0}}</div>
+            <div class="urokiLeftCell"><div class="urokiLeftImage" style="background-image:url(../../../public/img/profile/angliya.png);"></div>{{$amount_of_native or 0}}</div>
         </div>
         <div class="urokiTable">
             <div class="urokiHead">
@@ -23,7 +23,7 @@
                     <div class="urokiString">
                         <div class="urokiCell">{{$next_lesson->date}}</div>
                         <div class="urokiCell">{{$next_lesson->time}}</div>
-                        <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../public/img/noAvatar.png);"></div>
+                        <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div>
                             <div class="urokiName">
                                 {{$next_lesson->teacher->name}}
                             </div>
