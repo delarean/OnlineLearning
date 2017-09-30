@@ -10,7 +10,7 @@
     </div>
     <div class="besplurokiLink">
         <div class="besplurokiLinkText" style="width: 150px;">Прямая ссылка:</div>
-        <div class="besplurokiLinkLink">ссылка</div>
+        <div class="besplurokiLinkLink">http://mysocnet/student/98654</div>
         <div class="besplurokiLinkText">Поделиться:</div>
         <div class="besplurokiPodelitsya">
             <div class="besplurokiPodelitsyaLink"></div>

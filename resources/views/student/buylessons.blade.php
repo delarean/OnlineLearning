@@ -34,6 +34,10 @@
     <div class="oplaturokiImage" style="background-image:url(../../../public/img/profile/angliya.png);"></div><span style="font-weight:bold">11880 Руб</span>&nbsp;(990 Р./урок)
 </button>
 </div>
+<div>
+<span style="">Сюда можно ввести реферальную ссылку :</span>
+<input placeholder="http://mysocnet/student/98654" style="width: 300px;padding: 10px;margin-top: 20px;" type="text">
+</div>
 <div class="oplaturokiButtonWrap"><button id="buy_lesson">ПЕРЕЙТИ К ОПЛАТЕ</button></div>
 </div>
     @endsection

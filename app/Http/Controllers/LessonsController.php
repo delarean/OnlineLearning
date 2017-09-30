@@ -60,11 +60,13 @@ class LessonsController extends StudentController
         $lessons_type = $request->input('lesson');
         $this->getAmountOfLessons();
 
-        return view('lessons',[
+        return view('student.lessons',[
             'next_lessons' => $this->paginateNextLessons($lessons_type),
             'lesson_type' =>$lessons_type,
             'amount_of_native' => $this->amount_of_native,
             'amount_of_russian'  => $this->amount_of_russian,
+            'next_lesson_date_rus' => $this->makeNextDate(),
+            'only_one_lesson' => $this->isOnlyOneLesson(),
         ]);
 
     }

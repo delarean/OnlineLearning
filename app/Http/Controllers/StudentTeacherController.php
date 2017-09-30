@@ -13,23 +13,27 @@ class StudentTeacherController extends StudentController
         $next_lessons = $this->getNextLessons();
         if(isset($next_lessons[0])){
             $next_teacher =  $this->getNextLessons()[0]->teacher;
-            return view('teacher',[
+            return view('student.teacher',[
                 'teacher_name' => $next_teacher->name,
                 'teacher_birthday' => $next_teacher->birthday,
                 'teacher_mail' => $next_teacher['e-mail'],
                 'teacher_skype' => $next_teacher->skype,
                 'teacher_country' => $next_teacher->country,
                 'teacher_experience' => $next_teacher->experience,
+                'next_lesson_date_rus' => $this->makeNextDate(),
+                'only_one_lesson' => $this->isOnlyOneLesson(),
             ]);
         }
         else{
-            return view('teacher',[
+            return view('student.teacher',[
                 'teacher_name' => "Нет учителя",
                 'teacher_birthday' => "Нет учителя",
                 'teacher_mail' => "Нет учителя",
                 'teacher_skype' => "Нет учителя",
                 'teacher_country' => "Нет учителя",
                 'teacher_experience' => "Нет учителя",
+                'next_lesson_date_rus' => $this->makeNextDate(),
+                'only_one_lesson' => $this->isOnlyOneLesson(),
             ]);
         }
 

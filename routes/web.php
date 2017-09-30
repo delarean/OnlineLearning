@@ -17,36 +17,72 @@ Route::group(['prefix' => '/student'],function (){
 
     Route::get('/', 'StudentController@showStudentInfo')->name('home')->middleware('auth');
 
-    Route::get('/teacher', 'StudentTeacherController@showTeacherInfo')->middleware('auth');
+    Route::get('/teacher', 'StudentTeacherController@showTeacherInfo')->middleware('auth')->name('teacher');
 
     Route::get('/lessons', 'LessonsController@showLessonsInfo')->middleware('auth');
 
     Route::get('/payments','PaymentController@showStudentPayments')->middleware('auth');
 
 
-    Route::get('/buylessons', function () {
-        return view('buylessons');
-    })->middleware('auth');
+    Route::get('/buylessons', 'BuyLessonsController@showBuyLessons')->middleware('auth');
 
-    Route::get('/freelessons', function () {
-        return view('freelessons');
-    })->middleware('auth');
+    Route::get('/freelessons','FreeLessonsController@showFreeLessons')->middleware('auth');
 
-    Route::get('/writetoadmin', function () {
-        return view('writetoadmin');
-    })->middleware('auth');
+    Route::get('/writetoadmin', 'WriteToAdminController@show')->middleware('auth');
 
 
-    Route::get('/changepassword', function (Request $request) {
-        $message = $request->session()->get('message',false);
-        if($message) return view('changePassword')->with('message',$message);
-        return view('changePassword');
-    })->middleware('auth')->name('changePassword');
-
-    /*Route::post('/changepassword','Auth\LoginController@changePassword')->name('toChangePassword');*/
+    Route::get('/changepassword','ChangePasswordController@show')->middleware('auth')->name('changePassword');
 
 
     Route::post('/changepassword','StudentController@changePassword')->name('toChangePassword');
+
+});
+
+Route::group(['prefix' => 'admin'],function (){
+
+    Route::get('/',function (){
+       return view('admin.students');
+    });
+
+    Route::get('/teachers',function (){
+        return view('admin.teachers');
+    });
+
+    Route::get('/paymentsout',function (){
+        return view('admin.paymentsout');
+    });
+
+    Route::get('/lessons',function (){
+        return view('admin.lessons');
+    });
+
+    Route::get('/payments',function (){
+        return view('admin.payments');
+    });
+
+});
+
+Route::group(['prefix' => 'teacher'],function (){
+
+    Route::get('/',function (){
+        return view('teacher.teacher');
+    });
+
+    Route::get('/students',function (){
+        return view('teacher.students');
+    });
+
+    Route::get('/lessons',function (){
+        return view('teacher.lessons');
+    });
+
+    Route::get('/paymentsout',function (){
+        return view('teacher.paymentsout');
+    });
+
+    Route::get('/calendar',function (){
+        return view('teacher.calendar');
+    });
 
 });
 

@@ -180,7 +180,7 @@ menu{
 	position:absolute;
 	left:4.5%;
 	top:250px;
-	width: 80%;
+	width: 20%;
 	height:60px;
 	background:url(img/menu/selector.png) no-repeat;
 	background-size:contain;
@@ -658,4 +658,309 @@ input {
 	border: none;
 	outline: none;
 	box-sizing: border-box;
+}
+
+.ucenikiMain {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 75%;
+}
+
+.ucenikiSearchButton {
+	position: absolute;
+	right: 20px;
+	top: 15px;
+	width: 20px;
+	height: 20px;
+	background-image: url(img/search.png);
+	background-size: contain;
+	cursor: pointer;
+}
+
+.ucenikiSearch {
+	position: relative;
+	margin-bottom: 30px;
+	width: 72%;
+}
+
+.ucenikiImage {
+	width: 50px;
+	height: 30px;
+	background-size: cover;
+}
+
+.ucenikiPretitle {
+	position: absolute;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	right: 0px;
+	width: 25%;
+	font-size: 14pt;
+	line-height: 3.25;
+}
+
+.ucenikiPretable {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 60px;
+	background-color: #f8f8f9;
+}
+
+.urokiTitle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	text-align: center;
+	font-size: 14pt;
+	line-height: 3.25;
+	color: white;
+}
+
+.urokiHead {
+	display: flex;
+	align-items: stretch;
+	height: 60px;
+	background: linear-gradient(to top, #5dacce, #4f96d0);
+	border-radius: 5px 5px 0px 0px;
+}
+.urokiTable {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+}
+.paymentsoutArrow {
+	width: 27px;
+	height: 27px;
+	background-image: url(img/arrow.png);
+	background-size: contain;
+	cursor: pointer;
+}
+.urokiContent {
+	overflow-y: auto;
+	background: white;
+	max-height: 420px;
+	border-radius: 0px 0px 5px 5px;
+}
+.urokiString {
+	display: flex;
+	align-items: stretch;
+	box-sizing: border-box;
+	height: 60px;
+	border-bottom: 1px solid #d5f3e4;
+}
+.urokiCell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	text-align: center;
+	font-size: 12pt;
+}
+.paymentsoutSelect {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 7px 12px;
+	font-size: 12pt;
+	border: 1px solid #e3e3e3;
+	border-radius: 5px;
+	color: #2ec47a;
+	background-color: #f2f7fc;
+	outline: none;
+}
+
+.urokiCellNew {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	text-align: center;
+	font-size: 90%;
+}
+.urokiTable {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+}
+
+.calendarHead {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	background: linear-gradient(to top, #5dacce, #4f96d0);
+	border-radius: 5px 5px 0px 0px;
+}
+.calendarHeadImage {
+	width: 27px;
+	height: 27px;
+	background-image: url(img/calendararrow.png);
+	cursor: pointer;
+}
+.calendarHeadDate {
+	margin: 0px 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 12pt;
+	line-height: 3.25;
+	color: white;
+}
+.calendarHeadImage {
+	width: 27px;
+	height: 27px;
+	background-image: url(img/calendararrow.png);
+	cursor: pointer;
+}
+.calendarPrehead {
+	display: flex;
+	align-items: stretch;
+	height: 60px;
+	background-color: #f3f8fd;
+	color: black;
+}
+.calendarPreheadCell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 14.2856%;
+}
+.calendarContent {
+	display: flex;
+	overflow-y: auto;
+	background: white;
+	max-height: 420px;
+	border-radius: 0px 0px 5px 5px;
+}
+.calendarDay {
+	display: block-inline;
+	flex-direction: column;
+	align-items: stretch;
+	width: 14.2856%;
+}
+.calendarTime {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+}
+.ucenikiAddpupil {
+	position: fixed;
+	display: none;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1;
+}
+.ucenikiAddpupilWindow {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 400px;
+	background-color: #ecf3fb;
+}
+.ucenikiAddpupilCross {
+	position: absolute;
+	width: 38px;
+	height: 38px;
+	right: -19px;
+	top: -19px;
+	background-image: url(img/addpupilCross.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.ucenikiAddpupilTitle {
+	font-size: 18pt;
+	font-weight: bold;
+	line-height: 3;
+}
+.ucenikiAddpupilForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+.paymentsoutAddpaymentout {
+	position: fixed;
+	display: none;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1;
+}
+.paymentsoutAddpaymentoutCross {
+	position: absolute;
+	width: 38px;
+	height: 38px;
+	right: -19px;
+	top: -19px;
+	background-image: url(img/addpupilCross.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.paymentsoutAddpaymentoutSelect {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	padding: 15px 30px;
+	width: 85%;
+	font-size: 12pt;
+	height: 60px;
+	border-radius: 30px;
+	color: #757575;
+	background-color: white;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+.paymentsoutAddpaymentoutSelectText {
+	display: flex;
+	align-items: center;
+}
+.paymentsoutAddpaymentoutSelectImage {
+	width: 20px;
+	height: 11px;
+	background-image: url(img/arrow3.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.paymentsoutAddpaymentoutSelectList {
+	display: none;
+	position: absolute;
+	overflow-y: auto;
+	padding-bottom: 10px;
+	left: 0px;
+	top: 50px;
+	width: 100%;
+	max-height: 300px;
+	font-size: 12pt;
+	background-color: white;
+	border-top: 1px solid #e3e3e3;
+	border-radius: 0px 0px 30px 30px;
+}
+.nextLessonGreen {
+	margin-bottom: 30px;
+	width: 100%;
+	height: 65px;
+	font-size: 18pt;
+	line-height: 2.75;
+	text-align: center;
+	background-color: #2ec47a;
+	border-radius: 5px;
+	box-shadow: 0px 0px 30px 10px #ddf5e9;
 }

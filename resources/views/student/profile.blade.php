@@ -40,7 +40,7 @@
             </div>
             <div class="profileString" style="margin-top: 8px;">
                 <div class="profileImage" style="background-image:url(img/profile/prepod.png); width:30px; margin-left:-3px; margin-right:10px;"></div>
-                <span style="color:#999999;">Преподаватель:&nbsp;</span> <span class="profileTutor">{{$teacher_name or 'Нет учителя'}}</span>
+  <span style="color:#999999;">Преподаватель:&nbsp;</span> <span class="profileTutor"><a href="{{route('teacher')}}">{{$teacher_name or 'Нет учителя'}}</a></span>
             </div>
         </div>
         <div class="profileMainHr"></div>
@@ -57,8 +57,8 @@
                 <div class="profileImage" style="background-image:url(img/profile/angliya.png); width:35px; margin-left:-5px; margin-right:10px;"></div>
                 Уроков с носителем языка: {{$amount_of_native or 0}}
             </div>
-            <button>ПОПОЛНИТЬ</button>
+            <button id="popolnit_but">ПОПОЛНИТЬ</button>
         </div>
     </div>
-    <button style="margin:0px;"><a style="text-decoration: none;color: white" href="{{route('changePassword')}}">РЕДАКТИРОВАТЬ</a></button>
+    <button id="butt_edit" onclick="getToChangePassword()" style="margin:0px;">РЕДАКТИРОВАТЬ</button>
 @endsection

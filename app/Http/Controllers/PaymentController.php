@@ -7,7 +7,7 @@ use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PaymentController extends Controller
+class PaymentController extends StudentController
 {
     //@return arr
     public function getStudentPayments(){
@@ -39,8 +39,10 @@ class PaymentController extends Controller
 
     public function showStudentPayments(){
 
-        return view('payments',[
+        return view('student.payments',[
             'payments' => $this->getStudentPayments(),
+            'next_lesson_date_rus' => $this->makeNextDate(),
+            'only_one_lesson' => $this->isOnlyOneLesson(),
         ]);
 
 

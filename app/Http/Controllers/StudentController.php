@@ -158,7 +158,7 @@ class StudentController extends Controller
 
 
 
-            return view('profile',[
+            return view('student.profile',[
                 'second_lesson_time' => $this->second_lesson_time,
                 'second_lesson_date' => $this->second_lesson_date,
                 'first_lesson_time' => $this->first_lesson_time,
@@ -167,17 +167,29 @@ class StudentController extends Controller
                'amount_of_native' => $this->amount_of_native,
                 'amount_of_russian'  => $this->amount_of_russian,
                  'course_name' => $this->getCurrentCourse(),
+                'next_lesson_date_rus' => $this->makeNextDate(),
+                'only_one_lesson' => $this->isOnlyOneLesson(),
             ]);
         }
         else{
-            return view('profile',[
+            return view('student.profile',[
                 'second_lesson_time' => 'Нет',
                 'second_lesson_date' => 'Уроков',
                 'first_lesson_time' => 'Нет',
                 'first_lesson_date' => 'Уроков',
+                'next_lesson_date_rus' => $this->makeNextDate(),
+                'only_one_lesson' => 1,
             ]);
         }
 
+    }
+
+    //@return bul
+    public function isOnlyOneLesson(){
+        $next_lessons = $this->getNextLessons();
+        if(!isset($next_lessons)) return 1;
+        $is_only_one_lesson = isset($next_lessons[1]) ? 0 : 1 ;
+        return $is_only_one_lesson;
     }
 
     public function changePassword(Request $request){
@@ -204,6 +216,112 @@ class StudentController extends Controller
 
 
 
+    }
+
+    //@return array
+    public function setDateToRUS($date){
+        $date_array = [];
+        $weak_day_number =  date('N',strtotime($date));
+        switch ($weak_day_number){
+            case 1:
+                $weak_day = 'ПОНЕДЕЛЬНИК';
+                break;
+            case 2:
+                $weak_day = 'ВТОРНИК';
+                break;
+            case 3:
+                $weak_day = 'СРЕДА';;
+                break;
+            case 4:
+                $weak_day = 'ЧЕТВЕРГ';;
+                break;
+            case 5:
+                $weak_day = 'ПЯТНИЦА';;
+                break;
+            case 6:
+                $weak_day = 'СУББОТА';;
+                break;
+            case 7:
+                $weak_day = 'ВОСКРЕСЕНЬЕ';;
+                break;
+            default:
+                $weak_day = "что-то не так с днём недели";
+        }
+
+        $date_array['weak_day'] = $weak_day;
+
+        $day_of_month_number =  date('j',strtotime($date));
+
+        $date_array['day_of_month_number'] = $day_of_month_number;
+
+        $number_of_month = date('n',strtotime($date));
+
+        switch ($number_of_month){
+            case 1:
+                $name_of_month = 'ЯНВАРЯ';
+                break;
+            case 2:
+                $name_of_month = 'ФЕВРАЛЯ';
+                break;
+            case 3:
+                $name_of_month = 'МАРТА';;
+                break;
+            case 4:
+                $name_of_month = 'АПРЕЛЯ';;
+                break;
+            case 5:
+                $name_of_month = 'МАЯ';;
+                break;
+            case 6:
+                $name_of_month = 'ИЮНЯ';;
+                break;
+            case 7:
+                $name_of_month = 'ИЮЛЯ';;
+                break;
+            case 8:
+                $name_of_month = 'АВГУСТА';
+                break;
+            case 9:
+                $name_of_month = 'СЕНТЯБРЯ';
+                break;
+            case 10:
+                $name_of_month = 'ОКТЯБРЯ';
+                break;
+            case 11:
+                $name_of_month = 'НОЯБРЯ';
+                break;
+            case 12:
+                $name_of_month = 'ДЕКАБРЯ';
+                break;
+            default:
+                $name_of_month = "что-то не так с названием месяца";
+        }
+
+        $date_array['name_of_month'] = $name_of_month;
+
+        return $date_array;
+    }
+
+    //@return str
+    public function makeNextDate(){
+
+        $next_lessons = $this->getNextLessons();
+        if(isset($next_lessons[0])){
+
+            $next_lesson = $next_lessons[0];
+
+            $rus_date_arr = $this->setDateToRUS($next_lesson->date);
+            $time = $this->setTimeFormat($next_lesson->time);
+
+            $next_lesson_date_str = $rus_date_arr['weak_day'].' ';
+            $next_lesson_date_str .= $rus_date_arr['day_of_month_number'].' ';
+            $next_lesson_date_str .= $rus_date_arr['name_of_month'].', '.$time;
+
+            return $next_lesson_date_str;
+
+        }
+
+        return 'Нет уроков';
     }
 
 }

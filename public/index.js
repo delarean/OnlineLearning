@@ -1,3 +1,4 @@
+
 $(window).ready(function () {
     var buy_lesson = document.getElementById('buy_lesson');
 	var site = window.location.origin;
@@ -7,7 +8,7 @@ $(window).ready(function () {
     var sectors = href.split("?");
     var sectors = sectors[0].split("/");
     var currentSector  = sectors[sectors.length - 1];
-    //if (currentSector === 'changepassword') currentSector =
+
 
     if($('.menuButtonActive').length !== 0 ){
         $('.menuButtonActive').children().css('background-image', $('.menuButtonActive').children().css('background-image').replace('light', ''));
@@ -93,36 +94,53 @@ $(window).ready(function () {
 
     });
 
-    buy_lesson.onclick = function () {
+	if(buy_lesson){
+        buy_lesson.onclick = function () {
 
-    	if(!selected_course){
-    		alert('Выберите курс !');
-    		return;
-		}
+            if(!selected_course){
+                alert('Выберите курс !');
+                return;
+            }
 
-        var data = {id : selected_course};
-    	$.ajax({
-    		url : site + '/api/student/sendPayment',
-			method : 'POST',
-            data : data,
-            dataType : 'json'
-		}).done(function (values) {
+            var data = {id : selected_course};
+            $.ajax({
+                url : site + '/api/student/sendPayment',
+                method : 'POST',
+                data : data,
+                dataType : 'json'
+            }).done(function (values) {
 
-		    //console.log(values);
-			var form  = document.createElement('form');
-            form.setAttribute('action','https://paymaster.ru/Payment/Init');
-            form.setAttribute('method','POST');
-            document.body.appendChild(form);
-            for(var key in values){
+                //console.log(values);
+                var form  = document.createElement('form');
+                form.setAttribute('action','https://paymaster.ru/Payment/Init');
+                form.setAttribute('method','POST');
+                document.body.appendChild(form);
+                for(var key in values){
                     var input = document.createElement('input');
                     input.setAttribute('name',key);
                     input.setAttribute('value',values[key]);
                     form.appendChild(input);
-			}
-            form.submit();
-        });
+                }
+                form.submit();
+            });
 
-    };
+        };
+    }
+
+    var butt_edit = document.getElementById('butt_edit');
+
+	if(butt_edit){
+        butt_edit.onclick = function getToChangePassword() {
+            window.location = site+'/student/changepassword';
+        };
+    }
+
+    var popolnit_but = document.getElementById('popolnit_but');
+	if(popolnit_but){
+        popolnit_but.onclick = function () {
+            window.location = site+'/student/buylessons';
+        };
+    }
 
 
 
