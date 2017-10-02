@@ -861,7 +861,7 @@ input {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.5);
-	z-index: 1;
+	z-index: 1000;
 }
 .ucenikiAddpupilWindow {
 	position: relative;
@@ -870,6 +870,8 @@ input {
 	align-items: center;
 	width: 400px;
 	background-color: #ecf3fb;
+	top: 10%;
+	left: 37%;
 }
 .ucenikiAddpupilCross {
 	position: absolute;
@@ -900,7 +902,7 @@ input {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.5);
-	z-index: 1;
+	z-index: 1000;
 }
 .paymentsoutAddpaymentoutCross {
 	position: absolute;
@@ -963,4 +965,29 @@ input {
 	background-color: #2ec47a;
 	border-radius: 5px;
 	box-shadow: 0px 0px 30px 10px #ddf5e9;
+}
+
+.ucenikiAddTeacherCross {
+	position: absolute;
+	width: 38px;
+	height: 38px;
+	right: -19px;
+	top: -19px;
+	background-image: url(img/addpupilCross.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.paymentsoutAddpaymentoutSelectOption {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	width: 100%;
+	height: 60px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+.paymentsoutAddpaymentoutSelectList::-webkit-scrollbar-track{
+	margin-bottom:30px;
+	border-radius:10px;
+	background-color:#ebf3fb;
 }

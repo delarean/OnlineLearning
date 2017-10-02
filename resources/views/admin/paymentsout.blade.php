@@ -1,4 +1,49 @@
 @extends('layouts.admin')
+@section('pop-up')
+    <div class="paymentsoutAddpaymentout">
+        <div class="ucenikiAddpupilWindow">
+            <div class="paymentsoutAddpaymentoutCross"></div>
+            <span class="ucenikiAddpupilTitle">ДОБАВИТЬ ВЫПЛАТУ</span>
+            <hr width="70" style="margin-bottom:25px;">
+            <form action="" class="ucenikiAddpupilForm">
+                <div class="paymentsoutAddpaymentoutSelect">
+                    <div class="paymentsoutAddpaymentoutSelectText">
+                        <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                    </div>
+                    <div class="paymentsoutAddpaymentoutSelectImage"></div>
+                    <div class="paymentsoutAddpaymentoutSelectList">
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Алёна</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Катя</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Даша</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        </div>
+                        <div class="paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        </div>
+                    </div>
+                </div>
+                <input name="name" type="text" style="width:85%; height:60px; margin-bottom:20px;" placeholder="Сумма">
+                <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ПРИНЯТЬ</button>
+            </form>
+        </div>
+    </div>
+    @endsection
 @section('content')
 
     <div class="urokiMain">

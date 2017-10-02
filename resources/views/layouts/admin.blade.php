@@ -13,6 +13,7 @@
     <script src="../../../public/admin.js" type="text/javascript"></script>
 </head>
 <body>
+@yield('pop-up')
 <header>
     <div class="headerIn">
         <div class="logo"></div>
@@ -57,7 +58,8 @@
     </menu>
     @yield('content')
 </main>
-<div class="ucenikiAddpupil">
+
+{{--<div class="ucenikiAddpupil">
     <div class="ucenikiAddpupilWindow">
         <div class="ucenikiAddpupilCross"></div>
         <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧЕНИКА</span>
@@ -70,64 +72,7 @@
             <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ЗАРЕГИСТРИРОВАТЬ И ОТПРАВИТЬ</button>
         </form>
     </div>
-</div>
-<div class="ucenikiAddpupil">
-    <div class="ucenikiAddpupilWindow">
-        <div class="ucenikiAddpupilCross"></div>
-        <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧЕНИКА</span>
-        <hr width="70" style="margin-bottom:25px;">
-        <form action="" class="ucenikiAddpupilForm">
-            <input name="name" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите имя">
-            <input name="family" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите фамилию">
-            <input name="email" type="email" style="width:85%; margin-bottom:20px;" placeholder="Введите email">
-            <input name="pass" type="password" style="width:85%; margin-bottom:20px;" placeholder="Введите пароль">
-            <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ЗАРЕГИСТРИРОВАТЬ И ОТПРАВИТЬ</button>
-        </form>
-    </div>
-</div>
-<div class="paymentsoutAddpaymentout">
-    <div class="ucenikiAddpupilWindow">
-        <div class="paymentsoutAddpaymentoutCross"></div>
-        <span class="ucenikiAddpupilTitle">ДОБАВИТЬ ВЫПЛАТУ</span>
-        <hr width="70" style="margin-bottom:25px;">
-        <form action="" class="ucenikiAddpupilForm">
-            <div class="paymentsoutAddpaymentoutSelect">
-                <div class="paymentsoutAddpaymentoutSelectText">
-                    <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                </div>
-                <div class="paymentsoutAddpaymentoutSelectImage"></div>
-                <div class="paymentsoutAddpaymentoutSelectList">
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                    <div class="paymentsoutAddpaymentoutSelectOption">
-                        <div class="urokiAvatar" style="background-image:url(img/noavatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                    </div>
-                </div>
-            </div>
-            <input name="name" type="text" style="width:85%; height:60px; margin-bottom:20px;" placeholder="Сумма">
-            <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ПРИНЯТЬ</button>
-        </form>
-    </div>
-</div>
+</div>--}}
 <footer>
     <div class="headerIn"><div class="headerText" style="border:none; line-height:2.7;padding-left: 0;border:none;line-height:2.7;margin-left: 0;padding-top: 10px;">
             © Онлайн школа английского языка. Все права защищены.</div></div>

@@ -1,4 +1,20 @@
 @extends('layouts.admin')
+@section('pop-up')
+    <div class="ucenikiAddpupil">
+        <div class="ucenikiAddpupilWindow">
+            <div class="ucenikiAddpupilCross"></div>
+            <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧЕНИКА</span>
+            <hr width="70" style="margin-bottom:25px;">
+            <form action="" class="ucenikiAddpupilForm">
+                <input name="name" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите имя">
+                <input name="family" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите фамилию">
+                <input name="email" type="email" style="width:85%; margin-bottom:20px;" placeholder="Введите email">
+                <input name="pass" type="password" style="width:85%; margin-bottom:20px;" placeholder="Пароль">
+                <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ЗАРЕГИСТРИРОВАТЬ И ОТПРАВИТЬ</button>
+            </form>
+        </div>
+    </div>
+@endsection
 @section('content')
     <div class="ucenikiMain">
         <div class="ucenikiSearch">

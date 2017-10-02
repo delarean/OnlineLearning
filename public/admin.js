@@ -70,5 +70,46 @@ $(window).ready(function () {
         //else if(newPath === 'oplatit_but') window.location = site + '/admin/buylessons';
     });
 
+    $('#addpupilButton').click(function (e) {
+        e.preventDefault();
+        $('.ucenikiAddpupil').css('display','block');
+    });
+
+    $('.ucenikiAddpupilCross').click(function (e) {
+        e.preventDefault();
+        $('.ucenikiAddpupil').css('display','none');
+    });
+
+    $('#addTeacherButton').click(function (e) {
+        e.preventDefault();
+        $('.ucenikiAddpupil').css('display','block');
+    });
+
+    $('.ucenikiAddTeacherCross').click(function (e) {
+        e.preventDefault();
+        $('.ucenikiAddpupil').css('display','none');
+    });
+
+    $('.paymentsoutAddpaymentoutSelect').click(function (e) {
+        $('.paymentsoutAddpaymentoutSelect').css('border-radius', '25px 25px 0px 0px');
+        $('.paymentsoutAddpaymentoutSelectList').css('display', 'block');
+    });
+
+    $('.paymentsoutAddpaymentoutSelectOption').mousedown(function (e) {
+        $('.paymentsoutAddpaymentoutSelect').css('border-radius', '25px');
+        $('.paymentsoutAddpaymentoutSelectList').css('display', 'none');
+        $('.paymentsoutAddpaymentoutSelectText').html($(this).html());
+    });
+
+    $('#addpaymentoutButton').click(function (e) {
+        e.preventDefault();
+        $('.paymentsoutAddpaymentout').css('display', 'block');
+    });
+
+    $('.paymentsoutAddpaymentoutCross').click(function (e) {
+        e.preventDefault();
+        $('.paymentsoutAddpaymentout').css('display', 'none');
+    });
+
 
 });
