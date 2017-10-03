@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class LessonsController extends StudentController
 {
 
+    //@return model(collection)
     public function paginateNextLessons($lesson_type){
 
         $activeCourses = Auth::user()->student->activeCourses;

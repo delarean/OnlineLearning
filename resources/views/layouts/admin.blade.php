@@ -20,7 +20,7 @@
         <div class="headerText">Онлайн школа английского языка</div>
         <div class="headerProfile">
             <div class="headerAvatar"></div>
-            <div class="headerName">{{Auth::user()->student->name.' '.Auth::user()->student->surname}}</div>
+            <div class="headerName">{{Auth::user()->admin->name.' '.Auth::user()->admin->surname}}</div>
             <div class="headerDown"></div>
             <div class="headerSettings" >
                 <div class="menuButton settingsButton" style="margin-bottom:15px;"><div class="menuImage" style="background:url(../../../public/img/menu/settings.png) 0 0 no-repeat, url(../../../public/img/menu/settings.png) 20px 0 no-repeat; background-size:contain; margin-right:5px;"></div>

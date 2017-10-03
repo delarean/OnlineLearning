@@ -1,16 +1,41 @@
 @extends('layouts.admin')
 @section('pop-up')
+    @if ($errors->any())
     <div class="ucenikiAddpupil">
+        @else
+            <div class="ucenikiAddpupilHidden">
+            @endif
         <div class="ucenikiAddpupilWindow">
             <div class="ucenikiAddpupilCross"></div>
             <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧЕНИКА</span>
             <hr width="70" style="margin-bottom:25px;">
-            <form action="" class="ucenikiAddpupilForm">
-                <input name="name" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите имя">
-                <input name="family" type="text" style="width:85%; margin-bottom:20px;" placeholder="Введите фамилию">
-                <input name="email" type="email" style="width:85%; margin-bottom:20px;" placeholder="Введите email">
-                <input name="pass" type="password" style="width:85%; margin-bottom:20px;" placeholder="Пароль">
-                <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ЗАРЕГИСТРИРОВАТЬ И ОТПРАВИТЬ</button>
+            <form action="{{route('student')}}" method="post" class="ucenikiAddpupilForm">
+                {{csrf_field()}}
+                <input name="name" type="text" style="width:85%; margin-bottom:10px;" placeholder="Введите имя">
+                @if($errors->has('name'))
+                    @foreach($errors->get('name') as $message)
+                        <p>{{$message}}</p>
+                        @endforeach
+                    @endif
+                <input name="surname" type="text" style="width:85%; margin-top: 10px; margin-bottom:10px;" placeholder="Введите фамилию">
+                @if($errors->has('surname'))
+                    @foreach($errors->get('surname') as $message)
+                        <p>{{$message}}</p>
+                    @endforeach
+                @endif
+                <input name="email" type="email" style="width:85%; margin-top: 10px; margin-bottom:10px;" placeholder="Введите email">
+                @if($errors->has('email'))
+                    @foreach($errors->get('email') as $message)
+                        <p>{{$message}}</p>
+                    @endforeach
+                @endif
+                <input name="password" type="password" style="width:85%; margin-top: 10px; margin-bottom:10px;" placeholder="Пароль">
+                @if($errors->has('password'))
+                    @foreach($errors->get('password') as $message)
+                        <p>{{$message}}</p>
+                    @endforeach
+                @endif
+                <button type="submit" style="width:85%; margin:0px; margin-top: 10px; margin-bottom:10px; padding:15px 0px;">ЗАРЕГИСТРИРОВАТЬ И ОТПРАВИТЬ</button>
             </form>
         </div>
     </div>
@@ -36,33 +61,17 @@
                 </div>
             </div>
             <div class="urokiContent">
+                @foreach($all_students as $student)
                 <div class="urokiString">
                     <div class="urokiCell">
                         <a href="pupil.html"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div></a>
-                        <a href="pupil.html"><div class="urokiName">Имя</div></a>
+                        <a href="pupil.html"><div class="urokiName">{{$student['name'].' '.$student['surname']}}</div></a>
                     </div>
-                    <div class="urokiCell">Базовый английский</div>
-                    <div class="urokiCell">pocta1234567890@mail.ru</div>
-                    <div class="urokiCell"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
+                    <div class="urokiCell">{{$student['course_name']}}</div>
+                    <div class="urokiCell">{{$student['e-mail']}}</div>
+                    <div class="urokiCell"><span style="width:50%;">{{$student['amount_of_russian']}}</span><span style="width:50%;">{{$student['amount_of_native']}}</span></div>
                 </div>
-                <div class="urokiString">
-                    <div class="urokiCell">
-                        <a href="pupil.html"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div></a>
-                        <a href="pupil.html"><div class="urokiName">Имя</div></a>
-                    </div>
-                    <div class="urokiCell">Базовый английский</div>
-                    <div class="urokiCell">pocta1234567890@mail.ru</div>
-                    <div class="urokiCell"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
-                </div>
-                <div class="urokiString">
-                    <div class="urokiCell">
-                        <a href="pupil.html"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div></a>
-                        <a href="pupil.html"><div class="urokiName">Имя</div></a>
-                    </div>
-                    <div class="urokiCell">Базовый английский</div>
-                    <div class="urokiCell">pocta1234567890@mail.ru</div>
-                    <div class="urokiCell"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

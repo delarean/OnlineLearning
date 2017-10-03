@@ -65,7 +65,7 @@ class StudentController extends Controller
     // Выбираем из бд уроки и расставляем их по порядку
     // @return arr
 
-    protected function getNextLessons(){
+    public function getNextLessons(){
 
         //Сюда складываем модели уроков по порядку
         $next_lessons = [];

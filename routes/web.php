@@ -13,36 +13,36 @@
 use \Illuminate\Http\Request;
 
 
-Route::group(['prefix' => '/student'],function (){
+Route::group(['middleware' => 'auth','prefix' => '/student'],function (){
 
-    Route::get('/', 'StudentController@showStudentInfo')->name('home')->middleware('auth');
+    Route::get('/', 'StudentController@showStudentInfo')->name('home');
 
-    Route::get('/teacher', 'StudentTeacherController@showTeacherInfo')->middleware('auth')->name('teacher');
+    Route::get('/teacher', 'StudentTeacherController@showTeacherInfo')->name('teacher');
 
-    Route::get('/lessons', 'LessonsController@showLessonsInfo')->middleware('auth');
+    Route::get('/lessons', 'LessonsController@showLessonsInfo');
 
-    Route::get('/payments','PaymentController@showStudentPayments')->middleware('auth');
-
-
-    Route::get('/buylessons', 'BuyLessonsController@showBuyLessons')->middleware('auth');
-
-    Route::get('/freelessons','FreeLessonsController@showFreeLessons')->middleware('auth');
-
-    Route::get('/writetoadmin', 'WriteToAdminController@show')->middleware('auth');
+    Route::get('/payments','PaymentController@showStudentPayments');
 
 
-    Route::get('/changepassword','ChangePasswordController@show')->middleware('auth')->name('changePassword');
+    Route::get('/buylessons', 'BuyLessonsController@showBuyLessons');
+
+    Route::get('/freelessons','FreeLessonsController@showFreeLessons');
+
+    Route::get('/writetoadmin', 'WriteToAdminController@show');
+
+
+    Route::get('/changepassword','ChangePasswordController@show')->name('changePassword');
 
 
     Route::post('/changepassword','StudentController@changePassword')->name('toChangePassword');
 
 });
 
-Route::group(['prefix' => 'admin'],function (){
+Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
 
-    Route::get('/',function (){
-       return view('admin.students');
-    });
+    Route::get('/','Admin\StudentsControler@show');
+
+    Route::post('/','Admin\StudentsControler@addStudent')->name('student');
 
     Route::get('/teachers',function (){
         return view('admin.teachers');
@@ -59,6 +59,8 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('/payments',function (){
         return view('admin.payments');
     });
+
+
 
 });
 

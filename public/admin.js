@@ -72,22 +72,26 @@ $(window).ready(function () {
 
     $('#addpupilButton').click(function (e) {
         e.preventDefault();
+        $('.ucenikiAddpupilHidden').css('display','block');
         $('.ucenikiAddpupil').css('display','block');
     });
 
     $('.ucenikiAddpupilCross').click(function (e) {
         e.preventDefault();
         $('.ucenikiAddpupil').css('display','none');
+        $('.ucenikiAddpupilHidden').css('display','none');
     });
 
     $('#addTeacherButton').click(function (e) {
         e.preventDefault();
+        $('.ucenikiAddpupilHidden').css('display','block');
         $('.ucenikiAddpupil').css('display','block');
     });
 
     $('.ucenikiAddTeacherCross').click(function (e) {
         e.preventDefault();
         $('.ucenikiAddpupil').css('display','none');
+        $('.ucenikiAddpupilHidden').css('display','none');
     });
 
     $('.paymentsoutAddpaymentoutSelect').click(function (e) {

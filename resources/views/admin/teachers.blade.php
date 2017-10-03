@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('pop-up')
-    <div class="ucenikiAddpupil">
+    <div class="ucenikiAddpupilHidden">
         <div class="ucenikiAddpupilWindow">
             <div class="ucenikiAddTeacherCross"></div>
             <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧИТЕЛЯ</span>
