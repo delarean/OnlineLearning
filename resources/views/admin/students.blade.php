@@ -9,7 +9,7 @@
             <div class="ucenikiAddpupilCross"></div>
             <span class="ucenikiAddpupilTitle">ДОБАВИТЬ УЧЕНИКА</span>
             <hr width="70" style="margin-bottom:25px;">
-            <form action="{{route('student')}}" method="post" class="ucenikiAddpupilForm">
+            <form action="{{route('students')}}" method="post" class="ucenikiAddpupilForm">
                 {{csrf_field()}}
                 <input name="name" type="text" style="width:85%; margin-bottom:10px;" placeholder="Введите имя">
                 @if($errors->has('name'))

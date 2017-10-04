@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    public function activeCourses()
+    public function lessons()
     {
-        return $this->belongsToMany('App\ActiveCourse', 'Teachers_ActiveCourses','teacher_id', 'active_course_id');
+        return $this->hasMany('App\Lesson','teacher_id', 'id');
     }
 
     public function user()

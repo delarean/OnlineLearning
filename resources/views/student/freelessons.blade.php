@@ -13,9 +13,9 @@
         <div class="besplurokiLinkLink">http://mysocnet/student/98654</div>
         <div class="besplurokiLinkText">Поделиться:</div>
         <div class="besplurokiPodelitsya">
-            <div class="besplurokiPodelitsyaLink"></div>
-            <div class="besplurokiPodelitsyaLink"></div>
-            <div class="besplurokiPodelitsyaLink"></div>
+            <div class="besplurokiPodelitsyaLink"><img style="margin-left:10px; margin-top:14px;" src="../../../public/img/vkicon.png"></div>
+            <div class="besplurokiPodelitsyaLink"><img style="margin-left:14px; margin-top:11px;" src="../../../public/img/fbicon.png"></div>
+            <div class="besplurokiPodelitsyaLink"><img style="margin-left:13px; margin-top:10px;" src="../../../public/img/okicon.png"></div>
         </div>
     </div>
     <div class="punkty">

@@ -42,11 +42,11 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
 
     Route::get('/','Admin\StudentsControler@show');
 
-    Route::post('/','Admin\StudentsControler@addStudent')->name('student');
+    Route::post('/','Admin\StudentsControler@addStudent')->name('students');
 
-    Route::get('/teachers',function (){
-        return view('admin.teachers');
-    });
+    Route::get('/teachers','Admin\TeachersController@show')->name('teachers');
+
+    Route::post('/teachers','Admin\TeachersController@addTeacher');
 
     Route::get('/paymentsout',function (){
         return view('admin.paymentsout');
