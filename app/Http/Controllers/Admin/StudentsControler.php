@@ -228,10 +228,6 @@ class StudentsControler extends Controller
 
         }
 
-        /*$students_with_surname = Student::where('surname','like',$search_str)->get();
-
-        if(isset($students_with_surname)) return $this->getStudents($students_with_surname);*/
-
     }
 
 

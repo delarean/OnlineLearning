@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
 
     Route::group(['prefix' => 'search'],function (){
 
-        //Route::post('/teacher','Admin\TeachersController@searchTeachers')->name('searchTeachers');
+        Route::post('/teacher','Admin\TeachersController@searchTeachers')->name('searchTeachers');
         Route::post('/student','Admin\StudentsControler@searchStudents')->name('searchStudents');
 
     });

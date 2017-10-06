@@ -14,8 +14,19 @@ class TeachersController extends StudentsControler
 {
     public function show()
     {
+
+        if(session()->exists('not_found')) {
+            return view('admin.teachers',[
+                'not_found' => 1,
+            ]);
+        }
+
+        if(session()->exists('searched_teachers'))
+            $teachers = session()->get('searched_teachers');
+        else $teachers = Teacher::all();
+
         return view('admin.teachers',[
-            'teachers' => $this->getTeachers(Teacher::all()),
+            'teachers' => $this->getTeachers($teachers),
         ]);
     }
 
@@ -127,9 +138,62 @@ class TeachersController extends StudentsControler
 
     }
 
-    public function searchInDb(Request $request){
+    public function searchTeachers(Request $request){
 
+        if(!$request->has('search') || !$request->filled('search')) return back();
 
+        $search_str = $request->input('search');
+
+        $teachers_by_column = Teacher::where('name','like',$search_str)
+            ->orWhere('surname','like',$search_str)
+            ->orWhere('country','like',$search_str)
+            ->orWhere('e-mail','like',$search_str)
+            ->get();
+
+        if($teachers_by_column->isNotEmpty()){
+            return back()->with('searched_teachers',$teachers_by_column)->withInput();
+        }
+        //Не нашёл студента по полной строке
+        else{
+
+            //Тут понимаем ,что по целой
+            // строке ничего не найти
+
+            //Делим на строки
+            $exploded_str = explode(' ',$search_str);
+            //Проверяем удалось ли разделить
+            if(isset($exploded_str) && (count($exploded_str) < 2)){
+                //Строку нельзя разделить
+                return back()->with('not_found',1)->withInput();
+            }
+            else{
+                //Разделили строку
+
+                if(isset($exploded_str)) {
+                    //Ищем по имени и фамилии одновременно
+
+                    //Порядок имя,фамилия
+                    $teachers = Teacher::where('name', 'like', $exploded_str[0])
+                        ->where('surname', 'like', $exploded_str[1])
+                        ->get();
+                    if ($teachers->isNotEmpty())
+                        return back()->with('searched_teachers', $teachers)->withInput();
+
+                    //Порядок фамилия,имя
+                    $teachers = Teacher::where('name', 'like', $exploded_str[1])
+                        ->where('surname', 'like', $exploded_str[0])
+                        ->get();
+                    if ($teachers->isNotEmpty())
+                        return back()->with('searched_teachers', $teachers)->withInput();
+
+                }
+
+                //Не нашли таким образом
+                return back()->with('not_found', 1)->withInput();
+
+            }
+
+        }
 
     }
 }

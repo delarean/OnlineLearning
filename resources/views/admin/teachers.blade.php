@@ -44,8 +44,11 @@
 
     <div class="ucenikiMain">
         <div class="ucenikiSearch">
-            <input style="width:100%; padding-right:50px;" placeholder="Поиск...">
-            <div class="ucenikiSearchButton"></div>
+            <form id="seachForm" method="post" action="{{route('searchTeachers')}}">
+                {{csrf_field()}}
+            <input name="search" value="{{ old('search') }}" style="width:100%; padding-right:50px;" placeholder="Поиск...">
+                <div onclick="document.getElementById('seachForm').submit()" class="ucenikiSearchButton"></div>
+                </form>
         </div>
         <button id="addTeacherButton" style="margin:0px; margin-bottom:30px;">ДОБАВИТЬ</button>
         <div class="urokiTable">
@@ -69,6 +72,9 @@
                         </a></div>
                 </div>
                     @endforeach
+                @endisset
+                @isset($not_found)
+                <div id="studentsNotFound">Учетилей не найдено</div>
                 @endisset
             </div>
         </div>
