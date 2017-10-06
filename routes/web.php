@@ -52,9 +52,7 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
         return view('admin.paymentsout');
     });
 
-    Route::get('/lessons',function (){
-        return view('admin.lessons');
-    });
+    Route::get('/lessons','Admin\LessonsController@show');
 
     Route::get('/payments',function (){
         return view('admin.payments');

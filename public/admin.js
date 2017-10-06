@@ -60,13 +60,13 @@ $(window).ready(function () {
         e.preventDefault();
         var newPath = this.id;
         if(
-            newPath !== 'oplatit_but'
+            newPath !== 'lessons'
             && newPath !== 'admin'
             && currentSector !== newPath
         )
             window.location.href = site + '/admin/'+newPath;
-        else if(newPath !== 'oplatit_but' && newPath === 'admin' && currentSector !== newPath) window.location.href = site + '/'+newPath;
-        //else if(newPath !== 'oplatit_but' && currentSector !== newPath && newPath === 'lessons') window.location.href = site + '/admin/'+newPath+'?lesson=next';
+        else if(newPath !== 'lessons' && newPath === 'admin' && currentSector !== newPath) window.location.href = site + '/'+newPath;
+        else if( currentSector !== newPath && newPath === 'lessons') window.location.href = site + '/admin/'+newPath+'?lesson=next';
         //else if(newPath === 'oplatit_but') window.location = site + '/admin/buylessons';
     });
 
@@ -113,6 +113,14 @@ $(window).ready(function () {
     $('.paymentsoutAddpaymentoutCross').click(function (e) {
         e.preventDefault();
         $('.paymentsoutAddpaymentout').css('display', 'none');
+    });
+
+    $('#next_but').click(function (e) {
+        window.location.href = site + '/admin/lessons?lesson=next';
+    });
+
+    $('#prev_but').click(function (e) {
+        window.location.href = site + '/admin/lessons?lesson=previous';
     });
 
 

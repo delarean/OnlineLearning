@@ -15,7 +15,7 @@ class TeachersController extends StudentsControler
     public function show()
     {
         return view('admin.teachers',[
-            'all_teachers' => $this->getTeachers(Teacher::all()),
+            'teachers' => $this->getTeachers(Teacher::all()),
         ]);
     }
 
