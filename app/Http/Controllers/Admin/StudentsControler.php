@@ -16,19 +16,27 @@ class StudentsControler extends Controller
 {
     //@return view
     public function show(){
+
+        if(session()->exists('not_found')) {
+            return view('admin.students',[
+                'not_found' => 1,
+            ]);
+        }
+
+            if(session()->exists('searched_students'))
+                $students = session()->get('searched_students');
+            else $students = Student::all();
+
         return view('admin.students',[
-            'all_students' => $this->paginateStudents(),
+            'all_students' => $this->getStudents($students),
         ]);
     }
 
     //@return model(collection)
-    public function paginateStudents(){
-        $all_students = Student::all();
-        $pagination_number = 5;
-        $records_number = 0;
+    public function getStudents($students){
         //Сюда складываем всех студентов(масив масивов)
         $array_of_all_students = [];
-        foreach ($all_students as $student){
+        foreach ($students as $student){
             $current_student_info = [];
             $current_student_info['name'] = $student->name;
             $current_student_info['surname'] = $student->surname;
@@ -42,11 +50,8 @@ class StudentsControler extends Controller
             $current_student_info['amount_of_russian'] = $all_amounts_of_lessons['amount_of_russian'];
 
             array_push($array_of_all_students,$current_student_info);
-            $records_number++;
         }
-        if($records_number <= 5) return $array_of_all_students;
-
-        return new LengthAwarePaginator($array_of_all_students,$records_number,$pagination_number);
+         return $array_of_all_students;
 
         }
 
@@ -87,6 +92,7 @@ class StudentsControler extends Controller
     }
 
     //@param collection $student
+    //@return arr
     public function getNextLessons($student){
 
         //Сюда складываем модели уроков по порядку
@@ -150,6 +156,81 @@ class StudentsControler extends Controller
 
         return back();
 
+
+    }
+
+    public function searchStudents(Request $request){
+
+        if(!$request->has('search') || !$request->filled('search')) return back();
+
+        $search_str = $request->input('search');
+
+        $students_by_column = Student::where('name','like',$search_str)
+            ->orWhere('surname','like',$search_str)
+            ->orWhere('e-mail','like',$search_str)
+            ->get();
+
+        if($students_by_column->isNotEmpty()){
+            return back()->with('searched_students',$students_by_column)->withInput();
+        }
+        //Не нашёл студента по полной строке
+        else{
+
+            //Ищем по названию курса
+            $all_students = Student::all();
+            $students_to_show = [];
+            foreach ($all_students as $student){
+
+                $current_course_name = $this->getCurrentCourse($student);
+                if($current_course_name === $search_str)
+                    array_push($students_to_show,$student);
+
+            }
+            if(!empty($students_to_show)) return back()->with('searched_students',$students_to_show)->withInput();
+
+            //Тут понимаем ,что по целой
+            // строке ничего не найти
+
+            //Делим на строки
+            $exploded_str = explode(' ',$search_str);
+            //Проверяем удалось ли разделить
+            if(isset($exploded_str) && (count($exploded_str) < 2)){
+                //Строку нельзя разделить
+                return back()->with('not_found',1)->withInput();
+            }
+            else{
+                //Разделили строку
+
+                if(isset($exploded_str)) {
+                    //Ищем по имени и фамилии одновременно
+
+                    //Порядок имя,фамилия
+                    $students = Student::where('name', 'like', $exploded_str[0])
+                        ->where('surname', 'like', $exploded_str[1])
+                        ->get();
+                    if ($students->isNotEmpty())
+                        return back()->with('searched_students', $students)->withInput();
+
+                    //Порядок фамилия,имя
+                    $students = Student::where('name', 'like', $exploded_str[1])
+                        ->where('surname', 'like', $exploded_str[0])
+                        ->get();
+                    if ($students->isNotEmpty())
+                        return back()->with('searched_students', $students)->withInput();
+
+
+                }
+
+                //Не нашли таким образом
+                    return back()->with('not_found', 1)->withInput();
+
+            }
+
+        }
+
+        /*$students_with_surname = Student::where('surname','like',$search_str)->get();
+
+        if(isset($students_with_surname)) return $this->getStudents($students_with_surname);*/
 
     }
 

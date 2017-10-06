@@ -1001,3 +1001,10 @@ input {
 	border-radius:10px;
 	background-color:#ebf3fb;
 }
+#studentsNotFound{
+	font-size: 24px;
+	color: #999999;
+	width: 243px;
+	margin: 0 auto;
+	margin-bottom: 75px;
+}

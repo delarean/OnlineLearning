@@ -43,8 +43,11 @@
 @section('content')
     <div class="ucenikiMain">
         <div class="ucenikiSearch">
-            <input style="width:100%; padding-right:50px;" placeholder="Поиск...">
-            <div class="ucenikiSearchButton"></div>
+            <form id="seachForm" method="post" action="{{route('searchStudents')}}">
+                {{csrf_field()}}
+            <input name="search" value="{{ old('search') }}" style="width:100%; padding-right:50px;" placeholder="Поиск...">
+            <div onclick="document.getElementById('seachForm').submit()" class="ucenikiSearchButton"></div>
+            </form>
         </div>
         <button id="addpupilButton" style="margin:0px; margin-bottom:30px;">ДОБАВИТЬ</button>
         <div class="urokiTable">
@@ -61,6 +64,7 @@
                 </div>
             </div>
             <div class="urokiContent">
+                @isset($all_students)
                 @foreach($all_students as $student)
                 <div class="urokiString">
                     <div class="urokiCell">
@@ -72,6 +76,10 @@
                     <div class="urokiCell"><span style="width:50%;">{{$student['amount_of_russian']}}</span><span style="width:50%;">{{$student['amount_of_native']}}</span></div>
                 </div>
                 @endforeach
+                @endisset
+                @isset($not_found)
+                    <div id="studentsNotFound">Учеников не найдено</div>
+                @endisset
             </div>
         </div>
     </div>

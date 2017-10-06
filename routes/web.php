@@ -58,6 +58,13 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
         return view('admin.payments');
     });
 
+    Route::group(['prefix' => 'search'],function (){
+
+        //Route::post('/teacher','Admin\TeachersController@searchTeachers')->name('searchTeachers');
+        Route::post('/student','Admin\StudentsControler@searchStudents')->name('searchStudents');
+
+    });
+
 
 
 });
