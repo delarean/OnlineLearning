@@ -51,12 +51,12 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
     Route::get('/lessons','Admin\LessonsController@showLessons')->name('adminLessons');
     Route::post('/lessons','Admin\LessonsController@changeStatus');
 
-    Route::get('/paymentsout','Admin\PaymentsOutController@show');
+    Route::get('/payments','Admin\PaymentsOutController@show');
 
 
 
-    Route::get('/payments',function (){
-        return view('admin.payments');
+    Route::get('/paymentsout',function (){
+        return view('admin.paymentsout');
     });
 
     Route::group(['prefix' => 'search'],function (){

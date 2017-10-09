@@ -61,10 +61,7 @@ class PaymentController extends StudentController
 
         $course_model = All_Course::where('id',$course_id)->first();
 
-
         $course_amount =$course_model->amount;
-
-        //return 'Всё норм';
 
         $lessons_str = $course_amount === 2 ? 'урока c ' : 'уроков c ';
         $teacher_type = $course_model->is_native ? 'носителем языка' : 'русскоязычным преподавателем';
