@@ -15,7 +15,7 @@ class ActiveCourse extends Model
     }
 
     public function student(){
-        return $this->hasOne('App\Student', 'student_id', 'id');
+        return $this->belongsTo('App\Student', 'student_id', 'id');
     }
 
     public function teachers(){

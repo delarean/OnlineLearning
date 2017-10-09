@@ -48,11 +48,12 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
 
     Route::post('/teachers','Admin\TeachersController@addTeacher');
 
-    Route::get('/paymentsout',function (){
-        return view('admin.paymentsout');
-    });
+    Route::get('/lessons','Admin\LessonsController@showLessons')->name('adminLessons');
+    Route::post('/lessons','Admin\LessonsController@changeStatus');
 
-    Route::get('/lessons','Admin\LessonsController@show');
+    Route::get('/paymentsout','Admin\PaymentsOutController@show');
+
+
 
     Route::get('/payments',function (){
         return view('admin.payments');

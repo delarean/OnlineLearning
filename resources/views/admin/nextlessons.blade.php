@@ -12,35 +12,27 @@
             <div class="urokiTitle">СТАТУС</div>
         </div>
         <div class="urokiContent">
+            @foreach($lessons as $lesson)
             <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><select class="paymentsoutSelect">
-                        <option class="paymentsoutOption" style="color:#2ec47a;">По расписанию</option>
-                        <option class="paymentsoutOption" style="color:#adadad;">Отменен</option>
-                        <option class="paymentsoutOption" style="color:#e87e04;">Перенесён</option>
-                    </select></div>
+                <div class="urokiCell">{{$lesson['date']}}</div>
+                <div class="urokiCell">{{$lesson['time']}}</div>
+                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">{{$lesson['student_name']}}</div></div>
+                <div class="urokiCell">
+                    <form action="{{route('adminLessons')}}" method="post">
+                        {{csrf_field()}}
+                    <select class="paymentsoutSelect" name="status">
+  <option class="paymentsoutOption" value="{{$lesson['id']."|По расписанию"}}" style="color:#2ec47a;" @if($lesson['status'] === 0)selected @endif>По расписанию</option>
+  <option class="paymentsoutOption" value="{{$lesson['id']."|Отменен"}}" style="color:#adadad;" @if($lesson['status'] === 1)selected @endif>Отменен</option>
+  <option class="paymentsoutOption" value="{{$lesson['id']."|Перенесён"}}" style="color:#e87e04;" @if($lesson['status'] === 2)selected @endif>Перенесён</option>
+  <option class="paymentsoutOption" value="{{$lesson['id']."|Урок ожидается"}}" style="color:#2ec47a;" @if($lesson['status'] === 3)selected @endif>Урок ожидается</option>
+  <option class="paymentsoutOption" value="{{$lesson['id']."|Замена преподавателя"}}" style="color:red;" @if($lesson['status'] === 4)selected @endif>Замена преподавателя</option>
+                    </select>
+                    </form>
+                </div>
             </div>
-            <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><select class="paymentsoutSelect">
-                        <option class="paymentsoutOption" style="color:#2ec47a;">По расписанию</option>
-                        <option class="paymentsoutOption" style="color:#adadad;">Отменен</option>
-                        <option class="paymentsoutOption" style="color:#e87e04;">Перенесён</option>
-                    </select></div>
-            </div>
-            <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><select class="paymentsoutSelect">
-                        <option class="paymentsoutOption" style="color:#2ec47a;">По расписанию</option>
-                        <option class="paymentsoutOption" style="color:#adadad;">Отменен</option>
-                        <option class="paymentsoutOption" style="color:#e87e04;">Перенесён</option>
-                    </select></div>
-            </div>
+            @endforeach
+            @if(method_exists($lessons,'links'))
+                <p>{{ $lessons->appends(['lesson' => $lessons_type])->links() }}</p>
+            @endif
         </div></div>
 </div>

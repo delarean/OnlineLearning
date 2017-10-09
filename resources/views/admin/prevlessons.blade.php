@@ -20,29 +20,21 @@
             </div>
         </div>
         <div class="urokiContent">
+            @foreach($lessons as $lesson)
             <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><span style="color:green;">По расписанию</span></div>
+                <div class="urokiCell">{{$lesson['date']}}</div>
+                <div class="urokiCell">{{$lesson['time']}}</div>
+                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">
+                        {{$lesson['student_name']}}
+                    </div></div>
+                <div class="urokiCell"><span style="color:green;">{{$lesson['status_name']}}</span></div>
                 <div class="urokiCell">+1 урок</div>
-                <div class="urokiCell" style="flex-shrink:0;"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
+                <div class="urokiCell" style="flex-shrink:0;"><span style="width:50%;">{{$lesson['amount_of_russian']}}</span>
+                    <span style="width:50%;">{{$lesson['amount_of_native']}}</span></div>
             </div>
-            <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><span style="color:green;">По расписанию</span></div>
-                <div class="urokiCell">+1 урок</div>
-                <div class="urokiCell" style="flex-shrink:0;"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
-            </div>
-            <div class="urokiString">
-                <div class="urokiCell">01.01.2000</div>
-                <div class="urokiCell">20:00</div>
-                <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                <div class="urokiCell"><span style="color:green;">По расписанию</span></div>
-                <div class="urokiCell">+1 урок</div>
-                <div class="urokiCell" style="flex-shrink:0;"><span style="width:50%;">0</span><span style="width:50%;">0</span></div>
-            </div>
+            @endforeach
+                @if(method_exists($lessons,'links'))
+                    <p>{{ $lessons->appends(['lesson' => $lessons_type])->links() }}</p>
+                @endif
         </div></div>
 </div>

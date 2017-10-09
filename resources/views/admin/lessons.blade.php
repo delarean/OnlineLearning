@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-@isset($next_lessons)
+@if($lessons_type === 'next')
     @include('admin.nextlessons')
-    @endisset
-@isset($previous_lessons)
+    @endif
+@if($lessons_type === 'previous')
 
 @include('admin.prevlessons')
 
-    @endisset
+    @endif
 
 
 

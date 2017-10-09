@@ -4,6 +4,9 @@ $(window).ready(function () {
 
     var site = window.location.origin;
     var selected_course;
+    $('.paymentsoutSelect').each(function(i,elem){
+        changeColorOfSelect($(this));
+    });
 
     var href  =window.location.href;
     var sectors = href.split("?");
@@ -122,6 +125,42 @@ $(window).ready(function () {
     $('#prev_but').click(function (e) {
         window.location.href = site + '/admin/lessons?lesson=previous';
     });
+
+    $('.paymentsoutSelect').change(function(){
+        changeColorOfSelect($(this));
+        $(this).parent().submit();
+    });
+
+    function changeColorOfSelect(ths) {
+
+        var options = ths.children();
+        var selectedOption;
+        for(var option in options){
+            if(!options.hasOwnProperty(option)) continue;
+            if(options[option].selected){
+                selectedOption = option;
+                break;
+            }
+        }
+        switch (selectedOption){
+
+            case '3' :
+            case '0' :
+                ths.css('color','#2ec47a');
+                break;
+            case '1' :
+                ths.css('color','#adadad');
+                break;
+            case '2' :
+                ths.css('color','#e87e04');
+                break;
+            case '4' :
+                ths.css('color','red');
+                break;
+
+
+        }
+    }
 
 
 });
