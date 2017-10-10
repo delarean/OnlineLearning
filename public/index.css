@@ -776,6 +776,19 @@ input {
 	outline: none;
 }
 
+.payoutsSelect{
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 7px 12px;
+	font-size: 12pt;
+	border: 1px solid #e3e3e3;
+	border-radius: 5px;
+	color: #2ec47a;
+	background-color: #f2f7fc;
+	outline: none;
+}
+
 .urokiCellNew {
 	display: flex;
 	justify-content: center;
@@ -906,6 +919,16 @@ input {
 }
 .paymentsoutAddpaymentout {
 	position: fixed;
+	display: block;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1000;
+}
+.paymentsoutAddpaymentoutHidden {
+	position: fixed;
 	display: none;
 	justify-content: space-around;
 	align-items: center;
@@ -929,7 +952,7 @@ input {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding: 15px 30px;
 	width: 85%;
 	font-size: 12pt;

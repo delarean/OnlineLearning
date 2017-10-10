@@ -1,45 +1,46 @@
 @extends('layouts.admin')
 @section('pop-up')
-    <div class="paymentsoutAddpaymentout">
+    @if ($errors->any())
+        <div class="paymentsoutAddpaymentout">
+            @else
+                <div class="paymentsoutAddpaymentoutHidden">
+                    @endif
+
         <div class="ucenikiAddpupilWindow">
             <div class="paymentsoutAddpaymentoutCross"></div>
             <span class="ucenikiAddpupilTitle">ДОБАВИТЬ ВЫПЛАТУ</span>
             <hr width="70" style="margin-bottom:25px;">
-            <form action="" class="ucenikiAddpupilForm">
+            <form action="" method="post" class="ucenikiAddpupilForm">
+                {{csrf_field()}}
+                <input name="teacher" id="selectedTeacher" type="hidden">
                 <div class="paymentsoutAddpaymentoutSelect">
                     <div class="paymentsoutAddpaymentoutSelectText">
-                        <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
+                        <span style="margin-left:10px;">Выберите учителя</span>
                     </div>
                     <div class="paymentsoutAddpaymentoutSelectImage"></div>
                     <div class="paymentsoutAddpaymentoutSelectList">
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Алёна</span>
+                        @isset($teachers)
+                        @foreach($teachers as $teacher)
+                        <div class="teacherSelectOption paymentsoutAddpaymentoutSelectOption">
+                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div>
+                            <span class="valueSpan" id="{{$teacher['id']}}" style="margin-left:10px;">{{$teacher['name'].' '.$teacher['surname']}}</span>
                         </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Катя</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Даша</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                        </div>
-                        <div class="paymentsoutAddpaymentoutSelectOption">
-                            <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><span style="margin-left:10px;">Имя</span>
-                        </div>
+                        @endforeach
+                        @endisset
                     </div>
                 </div>
-                <input name="name" type="text" style="width:85%; height:60px; margin-bottom:20px;" placeholder="Сумма">
-                <button type="submit" style="width:85%; margin:0px; margin-bottom:20px; padding:15px 0px;">ПРИНЯТЬ</button>
+                @if($errors->has('teacher'))
+                    @foreach($errors->get('teacher') as $message)
+                        <p>{{$message}}</p>
+                    @endforeach
+                @endif
+                <input name="summ" value="{{old('summ')}}" type="text" style="width:85%; height:60px; margin-top: 10px; margin-bottom:10px;" placeholder="Сумма">
+                @if($errors->has('summ'))
+                    @foreach($errors->get('summ') as $message)
+                        <p>{{$message}}</p>
+                    @endforeach
+                @endif
+                <button type="submit" style="width:85%; margin:0px; margin-bottom:10px; margin-top: 10px; padding:15px 0px;">ПРИНЯТЬ</button>
             </form>
         </div>
     </div>
@@ -50,24 +51,51 @@
         <div></div>
         <button id="addpaymentoutButton" style="margin:0; margin-bottom:20px;">ДОБАВИТЬ</button>
         <div class="urokiTable">
+            <form id="orderPayoutsForm" action="{{route('setOrder')}}" method="post">
+                {{csrf_field()}}
             <div class="urokiHead">
-                <div class="urokiTitle">ПРЕПОДАВАТЕЛЬ<div class="paymentsoutArrow"></div></div>
-                <div class="urokiTitle">СТРАНА<div class="paymentsoutArrow"></div></div>
-                <div class="urokiTitle">E-MAIL<div class="paymentsoutArrow"></div></div>
-                <div class="urokiTitle">СУММА, Р<div class="paymentsoutArrow"></div></div>
-                <div class="urokiTitle">СТАТУС<div class="paymentsoutArrow"></div></div>
-            </div>
-            <div class="urokiContent">
-                <div class="urokiString">
-                    <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">Имя</div></div>
-                    <div class="urokiCell">Россия</div>
-                    <div class="urokiCell">pocta1234567890@mail.ru</div>
-                    <div class="urokiCell">10000</div>
-                    <div class="urokiCell"><select class="paymentsoutSelect">
-                            <option class="paymentsoutOption" style="color:#2ec47a;">Выплачено</option>
-                            <option class="paymentsoutOption" style="color:#e87e04;">Запрос</option>
-                        </select></div>
+                    <input type="hidden" name="name" value="0">
+                <div class="urokiTitle">ПРЕПОДАВАТЕЛЬ
+                    <div @if($orderBy == 'name')style="transform: rotate(180deg);" @endif class="paymentsoutArrow"></div>
                 </div>
+                    <input type="hidden" name="country" value="0">
+                <div class="urokiTitle">СТРАНА
+                    <div @if($orderBy == 'country')style="transform: rotate(180deg);" @endif class="paymentsoutArrow"></div>
+                </div>
+                        <input type="hidden" name="e-mail" value="0">
+                <div class="urokiTitle">E-MAIL
+                    <div @if($orderBy == 'e-mail')style="transform: rotate(180deg);" @endif class="paymentsoutArrow"></div>
+                </div>
+                            <input type="hidden" name="summ" value="0">
+                <div class="urokiTitle">СУММА, Р
+                    <div @if($orderBy == 'summ')style="transform: rotate(180deg);" @endif class="paymentsoutArrow"></div>
+                </div>
+                                <input type="hidden" name="status" value="0">
+                <div class="urokiTitle">СТАТУС
+                    <div @if($orderBy == 'status')style="transform: rotate(180deg);" @endif class="paymentsoutArrow"></div>
+                </div>
+            </div>
+            </form>
+            <div class="urokiContent">
+                @isset($payments)
+                @foreach($payments as $payment)
+                <div class="urokiString">
+                    <div class="urokiCell"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div><div class="urokiName">{{$payment['teacher_name']}}</div></div>
+                    <div class="urokiCell">{{$payment['teacher_country']}}</div>
+                    <div class="urokiCell">{{$payment['teacher_email']}}</div>
+                    <div class="urokiCell">{{$payment['summ']}}</div>
+                    <div class="urokiCell">
+                        <form action="{{route('changePayoutsStatus')}}" method="post">
+                            {{csrf_field()}}
+                        <select class="payoutsSelect" name="status">
+                            <option class="paymentsoutOption" style="color:#2ec47a;" value="{{$payment['id'].'|Выплачено'}}" @if($payment['status'] === 'Выплачено')selected @endif>Выплачено</option>
+                            <option class="paymentsoutOption" style="color:#e87e04;" value="{{$payment['id'].'|Запрос'}}" @if($payment['status'] === 'Запрос')selected @endif>Запрос</option>
+                        </select>
+                        </form>
+                    </div>
+                </div>
+                    @endforeach
+                @endisset
             </div>
         </div>
     </div>

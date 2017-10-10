@@ -51,13 +51,15 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
     Route::get('/lessons','Admin\LessonsController@showLessons')->name('adminLessons');
     Route::post('/lessons','Admin\LessonsController@changeStatus');
 
-    Route::get('/payments','Admin\PaymentsOutController@show');
+    Route::get('/payments','Admin\PaymentsController@show');
 
 
 
-    Route::get('/paymentsout',function (){
-        return view('admin.paymentsout');
-    });
+    Route::get('/paymentsout','Admin\PaymentsOutController@show');
+    Route::post('/paymentsout','Admin\PaymentsOutController@addPayout')->name('addPayout');
+    Route::post('/paymentsout/changeStatus','Admin\PaymentsOutController@changeStatus')
+        ->name('changePayoutsStatus');
+    Route::post('/paymentsout/setOrder','Admin\PaymentsOutController@setOrder')->name('setOrder');
 
     Route::group(['prefix' => 'search'],function (){
 

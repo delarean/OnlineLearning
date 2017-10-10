@@ -1,11 +1,14 @@
 
 $(window).ready(function () {
 
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                 По загрузке документа                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var site = window.location.origin;
     var selected_course;
     $('.paymentsoutSelect').each(function(i,elem){
         changeColorOfSelect($(this));
+    });
+    $('.payoutsSelect').each(function(i,elem){
+        changeColorOfPayoutsSelect($(this));
     });
 
     var href  =window.location.href;
@@ -27,18 +30,7 @@ $(window).ready(function () {
         $('#'+currentSector).addClass('menuButtonActive');
         $('#'+currentSector).children().css('background-image', $('#'+currentSector).children().css('background-image').replace('.png', 'light.png'));
 
-    /*else if(currentSector === 'writetoadmin' ){
-        $('.selector').stop().animate({'top':$('#'+currentSector).position().top-10 + 'px'}, 200);
-    }
-    else if(currentSector === 'changepassword'){
-        $('.selector').stop().animate({'top':$('#'+'student').position().top-18 + 'px'}, 200);
-        $('#'+'student').addClass('menuButtonActive');
-        $('#'+'student').children().css('background-image', $('#'+'student').children().css('background-image').replace('.png', 'light.png'));
-    }
-    if(currentSector !== 'changepassword'){
-        $('#'+currentSector).addClass('menuButtonActive');
-        $('#'+currentSector).children().css('background-image', $('#'+currentSector).children().css('background-image').replace('.png', 'light.png'));
-    }*/
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                 События                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
     $('.headerAvatar, .headerName, .headerDown').click(function (e) {
@@ -106,6 +98,18 @@ $(window).ready(function () {
         $('.paymentsoutAddpaymentoutSelect').css('border-radius', '25px');
         $('.paymentsoutAddpaymentoutSelectList').css('display', 'none');
         $('.paymentsoutAddpaymentoutSelectText').html($(this).html());
+        var teacher_id = $(this).children('.valueSpan').attr('id');
+        $('#selectedTeacher').attr('value',teacher_id);
+    });
+
+    $('#addpaymentoutButton').click(function (e) {
+        e.preventDefault();
+        $('.paymentsoutAddpaymentoutHidden').css('display', 'block');
+    });
+
+    $('.paymentsoutAddpaymentoutCross').click(function (e) {
+        e.preventDefault();
+        $('.paymentsoutAddpaymentout').css('display', 'none');
     });
 
     $('#addpaymentoutButton').click(function (e) {
@@ -113,9 +117,10 @@ $(window).ready(function () {
         $('.paymentsoutAddpaymentout').css('display', 'block');
     });
 
+
     $('.paymentsoutAddpaymentoutCross').click(function (e) {
         e.preventDefault();
-        $('.paymentsoutAddpaymentout').css('display', 'none');
+        $('.paymentsoutAddpaymentoutHidden').css('display', 'none');
     });
 
     $('#next_but').click(function (e) {
@@ -130,6 +135,21 @@ $(window).ready(function () {
         changeColorOfSelect($(this));
         $(this).parent().submit();
     });
+
+    $('.payoutsSelect').change(function(){
+        changeColorOfPayoutsSelect($(this));
+        $(this).parent().submit();
+    });
+
+    $('.paymentsoutArrow').click(function () {
+        $(this).css('rotate', 180);
+        $(this).parent().prev().attr('value',1);
+        $('#orderPayoutsForm').submit();
+    });
+
+
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                 Функции                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     function changeColorOfSelect(ths) {
 
@@ -161,6 +181,28 @@ $(window).ready(function () {
 
         }
     }
+
+    function changeColorOfPayoutsSelect(ths) {
+        var options = ths.children();
+        var selectedOption;
+        for(var option in options){
+            if(!options.hasOwnProperty(option)) continue;
+            if(options[option].selected){
+                selectedOption = option;
+                break;
+            }
+        }
+        switch (selectedOption){
+            case '0' :
+                ths.css('color','#2ec47a');
+                break;
+            case '1' :
+                ths.css('color','#e87e04');
+                break;
+        }
+    }
+
+
 
 
 });

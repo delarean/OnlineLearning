@@ -165,9 +165,9 @@ class StudentsControler extends Controller
 
         $search_str = $request->input('search');
 
-        $students_by_column = Student::where('name','like',$search_str)
-            ->orWhere('surname','like',$search_str)
-            ->orWhere('e-mail','like',$search_str)
+        $students_by_column = Student::where('name','like','%'.$search_str.'%')
+            ->orWhere('surname','like','%'.$search_str.'%')
+            ->orWhere('e-mail','like','%'.$search_str.'%')
             ->get();
 
         if($students_by_column->isNotEmpty()){

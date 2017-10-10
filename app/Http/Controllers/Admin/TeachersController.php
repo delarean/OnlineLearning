@@ -144,10 +144,10 @@ class TeachersController extends StudentsControler
 
         $search_str = $request->input('search');
 
-        $teachers_by_column = Teacher::where('name','like',$search_str)
-            ->orWhere('surname','like',$search_str)
-            ->orWhere('country','like',$search_str)
-            ->orWhere('e-mail','like',$search_str)
+        $teachers_by_column = Teacher::where('name','like','%'.$search_str.'%')
+            ->orWhere('surname','like','%'.$search_str.'%')
+            ->orWhere('country','like','%'.$search_str.'%')
+            ->orWhere('e-mail','like','%'.$search_str.'%')
             ->get();
 
         if($teachers_by_column->isNotEmpty()){

@@ -11,6 +11,7 @@
     <link href="../../../public/index.css" rel="stylesheet">
     <script src="../../../public/jquery.js" type="text/javascript"></script>
     <script src="../../../public/admin.js" type="text/javascript"></script>
+    <script src="../../../public/js/jquery.rotate.js"></script>
 </head>
 <body>
 @yield('pop-up')
