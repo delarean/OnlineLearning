@@ -41,7 +41,6 @@
     </div>
 @endsection
 @section('content')
-
     <div class="ucenikiMain">
         <div class="ucenikiSearch">
             <form id="seachForm" method="post" action="{{route('searchTeachers')}}">
@@ -63,12 +62,15 @@
                 @foreach($teachers as $teacher)
                 <div class="urokiString">
                     <div class="urokiCell">
-                        <a href="tutor.html"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div></a>
-                        <a href="tutor.html"><div class="urokiName">{{$teacher['name'].' '.$teacher['surname']}}</div></a>
+                        <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div>
+                        <div class="urokiName">
+                            <a href="{{route('adminTeacherInfo',['id' => $teacher['id']])}}">{{$teacher['name'].' '.$teacher['surname']}}
+                                </a>
+                        </div>
                     </div>
                     <div class="urokiCell">{{$teacher['country']}}</div>
                     <div class="urokiCell">{{$teacher['e-mail']}}</div>
-                    <div class="urokiCell"><a href="pupilsof.html" style="color:black; text-decoration:none;"><div class="tutorsNumber">{{$teacher['students_amount'] or 0}}</div>
+                    <div class="urokiCell"><a style="color:black; text-decoration:none;"><div class="tutorsNumber">{{$teacher['students_amount'] or 0}}</div>
                         </a></div>
                 </div>
                     @endforeach

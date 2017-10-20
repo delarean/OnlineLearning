@@ -11,10 +11,20 @@ $(window).ready(function () {
         changeColorOfPayoutsSelect($(this));
     });
 
-    var href  =window.location.href;
+    var href = window.location.href;
     var sectors = href.split("?");
     var sectors = sectors[0].split("/");
-    var currentSector  = sectors[sectors.length - 1];
+    if(~sectors.indexOf('student')
+        && ~sectors.indexOf('admin')
+    )
+        var currentSector =  'admin';
+    else if(~sectors.indexOf('teacher')
+        && ~sectors.indexOf('admin'))
+        var currentSector = 'teachers';
+    else
+    var currentSector = sectors[sectors.length - 1];
+
+    console.log(currentSector);
 
 
     if($('.menuButtonActive').length !== 0 ){
@@ -57,12 +67,10 @@ $(window).ready(function () {
         if(
             newPath !== 'lessons'
             && newPath !== 'admin'
-            && currentSector !== newPath
         )
             window.location.href = site + '/admin/'+newPath;
-        else if(newPath !== 'lessons' && newPath === 'admin' && currentSector !== newPath) window.location.href = site + '/'+newPath;
-        else if( currentSector !== newPath && newPath === 'lessons') window.location.href = site + '/admin/'+newPath+'?lesson=next';
-        //else if(newPath === 'oplatit_but') window.location = site + '/admin/buylessons';
+        else if(newPath !== 'lessons' && newPath === 'admin') window.location.href = site + '/'+newPath;
+        else if( newPath === 'lessons') window.location.href = site + '/admin/'+newPath+'?lesson=next';
     });
 
     $('#addpupilButton').click(function (e) {
@@ -146,6 +154,38 @@ $(window).ready(function () {
         $(this).parent().prev().attr('value',1);
         $('#orderPayoutsForm').submit();
     });
+
+    $('.edit_student_but').click(function () {
+        $(this).contents().remove();
+        $(this).text('СОХРАНИТЬ');
+        $(this).click(function () {
+            $('#changeStudentInfo').submit();
+        });
+        $('.chanderInp').each(function(i,elem){
+            var siblingP = $(this).siblings('p');
+            var prev_data = siblingP.contents().text();
+            $(this).attr('type','text');
+            $(this).attr('placeholder',prev_data);
+            siblingP.remove();
+        });
+    });
+
+    $('.edit_teacher_but').click(function () {
+        $(this).contents().remove();
+        $(this).text('СОХРАНИТЬ');
+        $(this).click(function () {
+            $('#changeTeacherInfo').submit();
+        });
+        $('select[name=is_native]').css('display','inline-block');
+        $('.chanderInp').each(function(i,elem){
+            var siblingP = $(this).siblings('p');
+            var prev_data = siblingP.contents().text();
+            $(this).attr('type','text');
+            $(this).attr('placeholder',prev_data);
+            siblingP.remove();
+        });
+    });
+
 
 
 

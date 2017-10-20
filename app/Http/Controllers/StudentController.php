@@ -163,7 +163,7 @@ class StudentController extends Controller
                 'second_lesson_date' => $this->second_lesson_date,
                 'first_lesson_time' => $this->first_lesson_time,
                 'first_lesson_date' => $this->first_lesson_date,
-                'teacher_name' => $this -> getNextTeacherName(),
+                'teacher_name' => $this->getNextTeacherName(),
                'amount_of_native' => $this->amount_of_native,
                 'amount_of_russian'  => $this->amount_of_russian,
                  'course_name' => $this->getCurrentCourse(),

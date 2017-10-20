@@ -68,8 +68,8 @@
                 @foreach($all_students as $student)
                 <div class="urokiString">
                     <div class="urokiCell">
-                        <a href="pupil.html"><div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div></a>
-                        <a href="pupil.html"><div class="urokiName">{{$student['name'].' '.$student['surname']}}</div></a>
+                       <div class="urokiAvatar" style="background-image:url(../../../public/img/noAvatar.png);"></div>
+                        <div class="urokiName"><a href="{{route('adminStudentInfo',['id' => $student['id']])}}">{{$student['name'].' '.$student['surname']}}</a></div>
                     </div>
                     <div class="urokiCell">{{$student['course_name']}}</div>
                     <div class="urokiCell">{{$student['e-mail']}}</div>

@@ -44,7 +44,12 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'],function (){
 
     Route::post('/','Admin\StudentsControler@addStudent')->name('students');
 
+    Route::get('/student/{id}','Admin\StudentsControler@showStudentInfo')->name('adminStudentInfo');
+    Route::post('/student/{id}','Admin\StudentsControler@changeStudentInfo');
+
     Route::get('/teachers','Admin\TeachersController@show')->name('teachers');
+    Route::get('/teacher/{id}','Admin\TeachersController@showTeacherInfo')->name('adminTeacherInfo');
+    Route::post('/teacher/{id}','Admin\TeachersController@changeTeacherInfo');
 
     Route::post('/teachers','Admin\TeachersController@addTeacher');
 

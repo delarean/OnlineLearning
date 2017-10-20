@@ -19,7 +19,7 @@ class Teacher extends Model
     {
         return $this->hasOne('App\User');
     }
-    public function payout(){
-        return $this->hasOne('App\Payout');
+    public function payouts(){
+        return $this->hasMany('App\Payout');
     }
 }

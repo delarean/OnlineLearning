@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('content')
     <div class="content">
-        {{--{{'Данные  - '.json_decode($student_credentials)}}--}}
         <div class="profileAvatar"></div>
         <div class="profileText">
             <span class="profileName">{{Auth::user()->student->name.' '.Auth::user()->student->surname}} </span>

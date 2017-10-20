@@ -32,7 +32,7 @@ class StudentsControler extends Controller
         ]);
     }
 
-    //@return model(collection)
+    //@return arr
     public function getStudents($students){
         //Сюда складываем всех студентов(масив масивов)
         $array_of_all_students = [];
@@ -41,6 +41,7 @@ class StudentsControler extends Controller
             $current_student_info['name'] = $student->name;
             $current_student_info['surname'] = $student->surname;
             $current_student_info['e-mail'] = $student['e-mail'];
+            $current_student_info['id'] = $student['id'];
             $student_active_courses = $student->activeCourses;
             $current_student_info['course_name'] = $this->getCurrentCourse($student);
 
@@ -230,6 +231,157 @@ class StudentsControler extends Controller
 
     }
 
+    public function showStudentInfo(Request $request){
+
+        $user_id = $request->id;
+        $student = Student::where('id',$user_id)->first();
+
+        $next_lessons = $this->getNextLessons($student);
+
+        if(isset($next_lessons)) {
+            if(isset($next_lessons[0]->date)) {
+                $this->first_lesson_date = $this->setDateFormat($next_lessons[0]->date);
+                $this->first_lesson_time = $this->setTimeFormat($next_lessons[0]->time);
+            }
+            else{
+                $this->first_lesson_date = 'Нет';
+                $this->first_lesson_time = 'Уроков';
+            }
+            if(isset($next_lessons[1]->date)){
+                $this->second_lesson_date = $this->setDateFormat($next_lessons[1]->date);
+                $this->second_lesson_time = $this->setTimeFormat($next_lessons[1]->time);
+            }
+            else {
+                $this->second_lesson_date = 'Нет';
+                $this->second_lesson_time = 'Уроков';
+            }
+
+            $active_courses = $student->activeCourses;
+            $amounts_of_lessons = $this->getAmountOfLessons($active_courses);
+            return view('admin.studentInfo',[
+                'student' => $student,
+                'date_of_birth' => $this->changeDateDelimiterAndOrder($student->birthday,'-','.'),
+                'second_lesson_time' => $this->second_lesson_time,
+                'second_lesson_date' => $this->second_lesson_date,
+                'first_lesson_time' => $this->first_lesson_time,
+                'first_lesson_date' => $this->first_lesson_date,
+                'amount_of_native' => $amounts_of_lessons['amount_of_native'],
+                'amount_of_russian'  => $amounts_of_lessons['amount_of_russian'],
+                'course_name' => $this->getCurrentCourse($student),
+                'teacher_name' => $this->getNextTeacherName($student),
+            ]);
+        }
+    else{
+            return view('student.profile',[
+                'second_lesson_time' => 'Нет',
+                'second_lesson_date' => 'Уроков',
+                'first_lesson_time' => 'Нет',
+                'first_lesson_date' => 'Уроков',
+            ]);
+        }
+
+
+
+    }
+
+        //Изменяем формат вывода даты
+        public function setDateFormat($date){
+
+            $weak_day_number =  date('N',strtotime($date));
+            switch ($weak_day_number){
+                case 1:
+                    $weak_day = 'ПН';
+                    break;
+                case 2:
+                    $weak_day = 'ВТ';
+                    break;
+                case 3:
+                    $weak_day = 'СР';;
+                    break;
+                case 4:
+                    $weak_day = 'ЧТ';;
+                    break;
+                case 5:
+                    $weak_day = 'ПТ';;
+                    break;
+                case 6:
+                    $weak_day = 'СБ';;
+                    break;
+                case 7:
+                    $weak_day = 'ВС';;
+                    break;
+                default:
+                    $weak_day = "что-то не так с днём недели";
+            }
+
+            return $weak_day;
+
+
+        }
+
+        //Изменяем формат вывода времени
+        public function setTimeFormat($time){
+
+            $new_time = '';
+            $splited_time = explode(':',$time);
+            $splited_time[2] = '-';
+            foreach ($splited_time as $time_part){
+                if(!isset($was_used)) $new_time.=$time_part.':';
+                else $new_time.=$time_part.' ';
+                $was_used = true;
+            }
+
+            return $new_time;
+
+        }
+
+    //Возвращает имя учителя для ближайшего урока
+    public function getNextTeacherName($student){
+
+        if(isset($this->getNextLessons($student)[0]))
+            return $this->getNextLessons($student)[0]->teacher->name;
+        else return 'Нет учителя';
+
+    }
+
+    public function changeDateDelimiterAndOrder($date,$curDel,$newDel){
+
+        if(!$date) return 'Нет данных';
+
+        $date_values = array_reverse(explode($curDel,$date));
+
+        $new_date = $date_values[0].$newDel;
+        $new_date.=$date_values[1].$newDel;
+        $new_date.=$date_values[2];
+
+        return $new_date;
+    }
+
+    public function changeStudentInfo(Request $request){
+
+        $student_id = $request->id;
+        $all_request_data = $request->all();
+        $accepted_request_data = [
+            'birthday',"e-mail",
+            "telephone","skype","country",
+        ];
+
+        $student = Student::where('id',$student_id)->first();
+
+        foreach ($all_request_data as $request_datum => $request_datum_value){
+            if(!in_array($request_datum,$accepted_request_data)) continue;
+            if(!$request->filled($request_datum)) continue;
+            if($request_datum == 'birthday')
+                $request_datum_value = $this->changeDateDelimiterAndOrder($request_datum_value,'.','-');
+
+            $student[$request_datum] = $request_datum_value;
+
+        }
+
+        $student->save();
+        return back();
+
+    }
 
 
 }

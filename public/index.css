@@ -1031,3 +1031,12 @@ input {
 	margin: 0 auto;
 	margin-bottom: 75px;
 }
+.chanderInp{
+	padding: 0px;
+	 font-size: 15px;
+	 border: solid #2ec47a;
+	 outline: none;
+	 box-sizing: border-box;
+	border-radius: 50px;
+	padding-left: 10px;
+}
